@@ -12,3 +12,7 @@ Language\
 Using\
 Functional\
 Paradigm
+
+## Other Useful Information
+
+The website planning is being created and hosted on [Figma](https://www.figma.com/)
