@@ -1,0 +1,19 @@
+* Cool CSS Buttons
+  .button {
+    background-color: inherit;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .cool-button {
+    box-shadow: 5px 5px black;
+  }
+  
+  .cool-button:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px black;
+  }
