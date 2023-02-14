@@ -13,10 +13,12 @@ functions return the last statement \
 - Bool
 - String
 - Number (floats and integers are the same)
+- Array
 - Function
-- JS Function (Writes Javascript Function)
+- JS Function (Allows a javascript function to be used in splufp)
 - Object (denoted by {})
 - Macro
+- Lambda
 
 ### Data Type Examples
 
@@ -30,9 +32,51 @@ this_is_a_number = -1
 this_is_a_number = 9
 this_is_a_number = -1.0
 this_is_a_number = 576.12371
+this_is_a_array = [1, 2, 3, 4, 5]
 this_is_a_function a b c = a + b + c
-this_is_a_js_function a b = "return a * b;"
+externjs this_is_a_js_function a b
 this_is_a_object = { "1" : 2, 123 : 11 }
+this_is_a_lambda = \(x, y\) -> x + y
+```
+
+### How to declare variables and functions
+
+``` haskell
+
+-- Declaring variables
+variable_name = 4
+
+-- Functions are similar but have an arguments list
+function_name arg1 arg2 = arg1 + arg2
+
+-- Functions are variables are constant by default but can be modifiable
+let var_or_func = 12
+var_of_func = 10
+
+const_var = 10 -- Declare 'const_var' with a value of 10 
+const_var = 12 -- Tries to reassign value to 'const_var' but this throws a runtime error
+
+-- Binding to a javascript function is simple, you just have to have the same function profile
+externjs js_function a b
+
+-- Macros are useful for generating code and are simple to create
+macro macro_function a b = a + b
+
+test_func a =
+  macro_function a 7
+-- generated code
+-- test_func a =
+--   a + 7
+
+-- Macros can also parse non-data-types
+macro adder_macro name value =
+  ##name##_##value## a = \
+    a + value
+
+adder_macro func_that_adds 4
+-- generated code
+-- func_that_adds_4 a =
+--   a + 4
 ```
 
 ## Currying
