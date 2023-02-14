@@ -3,14 +3,37 @@
 
 My language is dynamically typed function programming language \
 Everything is a function including variables \
-This language does not support pure functions \
 Currying is supported by default \
+Lambdas are supported by default \
+Everything is a constant unless specified by the keyword 'let'\
+functions return the last statement \
 
 ## Data Types
 - Null
 - Bool
 - String
 - Number (floats and integers are the same)
+- Function
+- JS Function (Writes Javascript Function)
+- Object (denoted by {})
+- Macro
+
+### Data Type Examples
+
+```haskell
+
+this_is_a_null = null
+this_is_a_bool = false
+this_is_a_bool = true
+this_is_a_string = "A string"
+this_is_a_number = -1
+this_is_a_number = 9
+this_is_a_number = -1.0
+this_is_a_number = 576.12371
+this_is_a_function a b c = a + b + c
+this_is_a_js_function a b = "return a * b;"
+this_is_a_object = { "1" : 2, 123 : 11 }
+```
 
 ## Currying
 
@@ -31,11 +54,12 @@ Input:
 let a = 5
 
 func a b c d =
-  ret a + b + c + d
+  a + b + c + d
   
 main =
   let b = func 1 2 3
   log (b 1)
+  0
 ```
 
 Ouput: 
