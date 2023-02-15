@@ -3,15 +3,20 @@ package parser;
 
 // Definitions of the data types that can be parsed
 
-enum SplufpDataType {
+enum SplufpExpr {
   SNull;
   SBool(val:Bool);
   SString(val:String);
   SNumber(val:Float);
-  SArray(val:Array<SplufpDataType>);
-  SFunc(const:Bool, name:String, argumentList:Array<String>, body:String);
+  SArray(val:Array<SplufpExpr>);
+  SObject(val:Map<String, SplufpExpr>);
+  SVariable(val:String); // reference to variable name
+}
+
+enum SplufpDataType {
+  SVariable(const:Bool, name:String, expr:SplufpExpr);
+  SFunc(const:Bool, name:String, argumentList:Array<String>, body:Array<SplufpExpr>);
   SJSFunc(name:String, argumentList:Array<String>); // links to a javascript function
-  SObject(val:Map<SplufpDataType, SplufpDataType>); // javascript { "1" : 2 } object
   SMacro(name:String, argumentList:Array<String>, body:String); // Unused
   SLambda(argumentList:Array<String>, body:String); // inline function \(x, y\) -> x + y
 }
@@ -28,7 +33,7 @@ class LanguageParser {
   var pos:Int;
 
   function new(str:String) {
-    this.str = str;
+    this.str = stripComments(str); // strip all the comments out so that we don't parse them
     this.pos = 0;
   }
 
@@ -43,6 +48,8 @@ class LanguageParser {
     return programData;
   }
 
+
+
   
   // parses base level elements
   function parseRec() : Null<SplufpDataType> {
@@ -52,8 +59,11 @@ class LanguageParser {
       case "":
       // do nothing if it is an empty string
       case "let":
-        // Parse a function that is not constant
-        return parseFunc(false, nextString());
+        // Parse a function that is constant
+        return parseVariable(true, nextString());
+      case "set":
+        // Parse a variable that is not constant
+        return parseVariable(false, nextString());
       default:
         // Parse a function that is constant
         return parseFunc(true, identifier);
@@ -72,6 +82,15 @@ class LanguageParser {
     **/
     return ~/(^macro|^externjs|^let)$/.match(str);
   }
+  
+  inline function isVariable(name:String):Bool {
+    /**
+     * Matches a name that:
+     *  - starts with a letter or '_'
+     *  - contains letters, numbers, and '_'
+    **/
+    return ~/^[a-zA-Z_][a-zA-Z0-9_]*$/.match(name);
+  }
 
   inline function isValidName(name:String):Bool {
     /**
@@ -80,7 +99,32 @@ class LanguageParser {
      *  - contains letters, numbers, and '_'
      *  - is not a keyword
     **/
-    return ~/^[a-zA-Z_][a-zA-Z0-9_]*$/.match(name) && !isKeyword(name);
+    return isVariable(name)  && !isKeyword(name);
+  }
+
+  function parseVariable(const: Bool, name:String) : Null<SplufpDataType> {
+    if(!isValidName(name)) {
+      throw 'variable name is invalid \'${name}\'';
+      return null;
+    }
+    //var s = nextString();
+    if(nextString() != "=") {
+      throw 'expected \'=\' before newline';
+      return null;
+    }
+  
+    var expr = parseExpr();
+    if(expr == null) {
+      throw 'Variable requires assignment';
+      return null;
+    }
+    
+    if(nextString() != '') {
+      throw 'expected newline after variable assignment';
+      return null;
+    }
+
+    return SVariable(const, name, expr);
   }
 
   function parseFunc(const: Bool, name:String) : Null<SplufpDataType> {
@@ -104,11 +148,174 @@ class LanguageParser {
     
     // TODO implement parsing of function body
 
-    return SFunc(const, name, args, "");
+    return SFunc(const, name, args, []);
+  }
+
+  function parseExpr(newline : Bool = false) : Null<SplufpExpr> {
+
+    var identifier : String = nextString(newline);
+    switch(identifier) {
+
+      case n if(~/^null[^a-zA-Z0-9_]*/.match(n)):
+        // if full variable name is 'null' retun null
+
+        // return to position to read the rest of the token
+        pos -= ~/null/.replace(n, "").length + 1;
+        return SNull;
+
+      case t if(~/^true[^a-zA-Z0-9_]*/.match(t)):
+        // if full variable name is 'true' retun null
+
+        // return to position to read the rest of the token
+        pos -= ~/true/.replace(t, "").length + 1;
+        return SBool(true);
+      case f if(~/^false[^a-zA-Z0-9_]*/.match(f)):
+        // if full variable name is 'false' retun null
+
+        // return to position to read the rest of the token
+        pos -= ~/false/.replace(f, "").length + 1;
+        return SBool(false);
+      case num if(~/^-?[0-9]+\.*[0-9]*/.match(num)):
+        // if we match a number with optional '-' sign we parse it
+
+        // return to position to read the rest of the token
+        pos -= ~/^-?[0-9]+\.*[0-9]*/.replace(num, "").length + 1;
+        return SNumber(Std.parseFloat(num));
+      case str if(~/^['"]/.match(str)):
+        // if we have either an ' or " parse it
+
+        // return to the start of the string
+        pos -= str.length;
+        return parseString(str.charCodeAt(0));
+      case arr if(~/^\[/.match(arr)):
+        // if we match a '[' parse an array
+
+        // return to position to read the rest of the token
+        pos -= arr.length;
+        return parseArray();
+      case v if(isVariable(v)):
+        // if it is a valid variable name then parse it
+        return SVariable(v);
+      default:
+        throw "expr type is not supported yet";
+        return null;
+    }
+    return null;
+  }
+  
+  inline function parseEscape() : Int {
+    var c = nextChar();
+    switch(c) {
+      case 'a'.code:
+        return 0x07;
+      case 'b'.code:
+        return 0x08;
+      case 'e'.code:
+        return 0x1b;
+      case 'f'.code:
+        return 0x0c; 
+      case 'n'.code:
+        return '\n'.code;
+      case 'r'.code:
+        return '\r'.code;
+      case 't'.code:
+        return '\t'.code;
+      case 'v'.code:
+        return 0x0b;
+      case 'x'.code:
+        return Std.parseInt('0x${nextChar()}${nextChar()}');
+      default:
+        return c;
+    }
+  }
+
+  function parseArray() : Null<SplufpExpr> {
+    var arr = [];
+    var last_string = "";
+
+    switch(nextString(true)) {
+      case ']':
+        // return an empty array if it contains no elements
+        return SArray([]);
+      case str:
+        // otherwise return to previous position
+        pos -= str.length + 1;
+    }
+
+    do {
+
+      var expr = parseExpr(true);
+      if(expr == null) {
+        throw 'expected an expression';
+        return null;
+      }
+      arr.push(expr);
+    
+
+      // Test whether our token contains ',' or ']'
+      last_string = nextString(true);
+      if(~/[,\]]/.match(last_string)) {
+        pos -= last_string.length + 1;
+        // Get the position of the first ',' or ']'
+        do {
+        } while( !~/[,\]]/.match(String.fromCharCode(nextChar())) );
+        pos--;
+      }
+
+      last_string = nextString(true);
+
+      // return to the correct position for eating more tokens
+      if(last_string.charAt(0) == ',') {
+        pos -= last_string.length;
+      }
+    } while(last_string.charAt(0) == ',');
+    
+
+    if(last_string.charAt(0) != ']') {
+      throw 'expected \']\' to terminate array';
+      return null;
+    }
+      
+
+    pos -= last_string.length;
+    return SArray(arr);
+  }
+
+  function parseString(stringId : Int) : Null<SplufpExpr> {
+    var string = "";
+    var c;
+    while((c = nextChar()) >= 0) {
+     switch(c) {
+        case '\\'.code:
+          string += String.fromCharCode(parseEscape()); 
+        case _ if(c == stringId):
+          return SString(string);
+        default:
+          string += String.fromCharCode(c);
+     }
+    }
+    return null;
   }
 
   inline function nextChar() {
     return StringTools.fastCodeAt(str, pos++);
+  }
+
+  inline function stripMultiLineComment(str:String):String {
+    /*
+       replace all comments in this style
+    */
+    return ~/\/\*.*\*\//s.replace(str, "");
+  }
+  
+  inline function stripSingleLineComment(str:String):String {
+    // replace all comments in this style
+    return ~/\/\/.*/g.replace(str, "");
+  }
+
+  function stripComments(str:String):String {
+    // strip all types of comments
+    return stripMultiLineComment(stripSingleLineComment(str));    
   }
 
   function nextString(newline:Bool = false):String {
@@ -125,7 +332,8 @@ class LanguageParser {
           // loop
         default:
           ret_string += String.fromCharCode(c);
-          while( !StringTools.isEof((c = nextChar()) ) ) {
+          do {
+            c = nextChar();
             switch(c) {
               case ' '.code, '\r'.code, '\n'.code, '\t'.code:
                 // return on whitespace
@@ -133,8 +341,8 @@ class LanguageParser {
               default:
                 ret_string += String.fromCharCode(c);
             }
-          }
-          break;
+          } while( !StringTools.isEof(c));
+          return ret_string;
       }
     }
     return "";
