@@ -24,19 +24,19 @@ functions return the last statement \
 
 ```haskell
 
-this_is_a_null = null
-this_is_a_bool = false
-this_is_a_bool = true
-this_is_a_string = "A string"
-this_is_a_number = -1
-this_is_a_number = 9
-this_is_a_number = -1.0
-this_is_a_number = 576.12371
-this_is_a_array = [1, 2, 3, 4, 5]
+let this_is_a_null = null
+let this_is_a_bool = false
+let this_is_a_bool = true
+let this_is_a_string = "A string"
+let this_is_a_number = -1
+let this_is_a_number = 9
+let this_is_a_number = -1.0
+let this_is_a_number = 576.12371
+let this_is_a_array = [1, 2, 3, 4, 5]
 this_is_a_function a b c = a + b + c
 externjs this_is_a_js_function a b
-this_is_a_object = { "1" : 2, 123 : 11 }
-this_is_a_lambda = \(x, y\) -> x + y
+let this_is_a_object = { "1" : 2, 123 : 11 }
+let this_is_a_lambda = \(x, y\) -> x + y
 ```
 
 ### How to declare variables and functions
@@ -50,10 +50,10 @@ variable_name = 4
 function_name arg1 arg2 = arg1 + arg2
 
 -- Functions are variables are constant by default but can be modifiable
-let var_or_func = 12
+set var_or_func = 12
 var_of_func = 10
 
-const_var = 10 -- Declare 'const_var' with a value of 10 
+let const_var = 10 -- Declare 'const_var' with a value of 10 
 const_var = 12 -- Tries to reassign value to 'const_var' but this throws a runtime error
 
 -- Binding to a javascript function is simple, you just have to have the same function profile
@@ -95,22 +95,23 @@ function_name 1 2
 Input:
 
 ```haskell
-let a = 5
+let variable = 5
 
 func a b c d =
   a + b + c + d
   
-main =
+main {
   let b = func 1 2 3
   log (b 1)
   0
+}
 ```
 
 Ouput: 
 
 ```javascript
 
-var __spl__a = function() { return 5; }
+var __spl__variable = function() { return 5; }
 
 var __spl__func = function(__spl__func__a) {
   return function(__spl__func__b) {
