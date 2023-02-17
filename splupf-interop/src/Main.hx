@@ -19,6 +19,16 @@ class Main {
         return 'Number $val';
       case SVariable(val):
         return 'Variable $val';
+      case SVariableAssign(val, assignment):
+        return 'Variable $val = ${splufpExprToString(assignment)}';
+      case SLambda(args, body):
+        var func_str = 'Lambda ${args} {\n';
+        for(i in body) {
+          func_str += '  ' + splufpExprToString(i) + '\n';
+        }
+
+        return func_str + '}';
+        return 'Lambda $args $body';
       case SArray(arr):
         var s = '[ ';
         for(i in arr) {
@@ -37,6 +47,13 @@ class Main {
           // \x08 is a backspace
           s += '\x08\x08 }';
         return s;
+      case SBracketExpr(expr):
+        var bracket_str = '( ';
+        for(e in expr) {
+          bracket_str += '${splufpExprToString(e)} ';
+        }
+        bracket_str += ')';
+        return bracket_str;
     }
     return ''; 
   }
@@ -48,7 +65,12 @@ class Main {
         return (const ? 'let' : 'set') + ' ${name} ${splufpExprToString(expr)}';
 
       case SFunc(const, name, args, body):
-        return (const ? 'const ' : '') + 'function ${name} ${args} { ${body} }';
+        var func_str = (const ? 'const ' : '') + 'function ${name} ${args} {\n';
+        for(i in body) {
+          func_str += '  ' + splufpExprToString(i) + '\n';
+        }
+
+        return func_str + '}';
 
       case SJSFunc(name, args):
         return 'jsfunction ${name} ${args}';
@@ -56,8 +78,6 @@ class Main {
       case SMacro(_, _, _):
         return 'Macro unsupported';
 
-      case SLambda(_, _):
-        return 'Lambda unsupported';
     }
   }
 
@@ -105,6 +125,21 @@ set b = [
 
   ]
 ]
+
+test_func a b {
+  123
+  321
+  null
+  3
+  a = b
+  \\(a, b\\) -> {
+    \\(b,  a\\) -> {
+      a
+    }
+  }
+}
+func { null }
+func { 123 }
   ";
 #if js
     js.Browser.console.log('Parsing String:\n${test_parsing}');
