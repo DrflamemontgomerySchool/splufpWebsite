@@ -5,7 +5,6 @@ My language is dynamically typed function programming language \
 Everything is a function including variables \
 Currying is supported by default \
 Lambdas are supported by default \
-Everything is a constant unless specified by the keyword 'let'\
 functions return the last statement \
 
 ## Data Types
