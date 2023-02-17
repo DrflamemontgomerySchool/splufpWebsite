@@ -9,16 +9,16 @@ Everything is a constant unless specified by the keyword 'let'\
 functions return the last statement \
 
 ## Data Types
-- Null
-- Bool
-- String
-- Number (floats and integers are the same)
-- Array
-- Function
-- JS Function (Allows a javascript function to be used in splufp)
-- Object (denoted by {})
-- Macro
-- Lambda
+- [x] Null
+- [x] Bool
+- [x] String
+- [x] Number (floats and integers are the same)
+- [x] Array
+- [x] Function
+- [ ] JS Function (Allows a javascript function to be used in splufp)
+- [ ] Object (denoted by {})
+- [ ] Macro
+- [x] Lambda
 
 ### Data Type Examples
 
@@ -97,8 +97,9 @@ Input:
 ```haskell
 let variable = 5
 
-func a b c d =
+func a b c d = {
   a + b + c + d
+}
   
 main {
   let b = func 1 2 3
