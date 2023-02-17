@@ -11,6 +11,9 @@ enum SplufpExpr {
   SArray(val:Array<SplufpExpr>);
   SObject(val:Map<String, SplufpExpr>);
   SVariable(val:String); // reference to variable name
+  SVariableAssign(val:String, assignment:SplufpExpr); // reference to variable name
+  SLambda(argumentList:Array<String>, body:Array<SplufpExpr>); // inline function \(x, y\) -> x + y
+  SBracketExpr(expr:Array<SplufpExpr>);
 }
 
 enum SplufpDataType {
@@ -18,7 +21,6 @@ enum SplufpDataType {
   SFunc(const:Bool, name:String, argumentList:Array<String>, body:Array<SplufpExpr>);
   SJSFunc(name:String, argumentList:Array<String>); // links to a javascript function
   SMacro(name:String, argumentList:Array<String>, body:String); // Unused
-  SLambda(argumentList:Array<String>, body:String); // inline function \(x, y\) -> x + y
 }
 
 class LanguageParser {
@@ -136,8 +138,8 @@ class LanguageParser {
     var args : Array<String> = [];
     var identifier : String;
 
-    while((identifier = nextString()) != "=") {
-      if(identifier == '') { throw "expected '=' before newline"; }
+    while( !~/^\{/.match((identifier = nextString())) ) {
+      if(identifier == '') { throw "expected '{' before newline"; }
       if(!isValidName(identifier)) {
         throw 'argument name is invalid \'${identifier}\'';
         return null;
@@ -145,13 +147,26 @@ class LanguageParser {
 
       args.push(identifier);
     }
+
     
     // TODO implement parsing of function body
+    pos -= identifier.length + 1;
+    var body = parseFuncBody();
+    if(body == null) {
+      throw 'expected a body for the function';
+      return null;
+    }
+    
+    if(nextString() != '') {
+      throw 'expected newline after \'}\'';
+      return null;
+    }
 
-    return SFunc(const, name, args, []);
+    return SFunc(const, name, args, body);
   }
 
-  function parseExpr(newline : Bool = false) : Null<SplufpExpr> {
+
+  function parseExpr(newline : Bool = false, variable_assignment : Bool = false) : Null<SplufpExpr> {
 
     var identifier : String = nextString(newline);
     switch(identifier) {
@@ -195,12 +210,113 @@ class LanguageParser {
         return parseArray();
       case v if(isVariable(v)):
         // if it is a valid variable name then parse it
-        return SVariable(v);
+        return parseExprVariable(v, variable_assignment);
+      case l if( ~/^\\\(/.match(l) ):
+        pos -= l.length - 1;
+        return parseLambda();
       default:
         throw "expr type is not supported yet";
         return null;
     }
     return null;
+  }
+
+  function parseLambda() : Null<SplufpExpr> {
+    var args = [];
+
+    switch(nextString(true)) {
+      case '\\)':
+      case str:
+        // otherwise return to previous position
+        pos -= str.length + 1;
+        var last_string : String;
+        
+        final variable_name = ~/^([a-zA-Z_][a-zA-Z0-9_]*)(.*)/;
+
+
+        do {
+
+          var arg_name = nextString();
+          if(!variable_name.match(arg_name)) {
+            throw 'invalid argument name';
+            return null;
+          }
+          args.push(variable_name.matched(1));
+          pos -= variable_name.matched(2).length + 1;
+
+
+          // Test whether our token contains ',' or ']'
+          last_string = nextString(true);
+          if(~/(,|\\\))/.match(last_string)) {
+            pos -= last_string.length + 1;
+            // Get the position of the first ',' or ']'
+            do {
+              switch(nextChar()) {
+                case ','.code:
+                  pos--;
+                  break;
+                case '\\'.code:
+                  if(nextChar() == ')'.code)  {
+                    pos -= 2;
+                    break;
+                  }
+              }
+            } while(true);
+          }
+
+          last_string = nextString(true);
+
+          // return to the correct position for eating more tokens
+          if(last_string.charAt(0) == ',') {
+            pos -= last_string.length;
+          }
+        } while(last_string.charAt(0) == ',');
+
+    }
+
+    switch(nextString(true)) {
+      case str if(~/^->/.match(str)):
+        pos -= str.length - 1;
+      default:
+        throw 'error expected \'->\' after lambda arguments';
+        return null;
+    }
+
+    var body = parseFuncBody();
+    if(body == null) {
+      throw 'expected function body after \'->\'';
+    }
+
+    return SLambda(args, body);
+  }
+
+  function parseExprVariable(name : String, assignable : Bool) : Null<SplufpExpr> {
+    pos--;
+    var str = nextString();
+    switch(str) {
+      case '':
+        return SVariable(name);
+      case '=' if(assignable):
+        var expr = parseExpr();
+        if(expr == null) {
+          throw 'expected expression after \'=\'';
+          return null;
+        }
+        pos--;
+        if(nextString() != '') {
+          throw 'expected newline after expression';
+          return null;
+        }
+        pos--;
+        
+        return SVariableAssign(name, expr);
+      case _ if(assignable):
+        throw 'expected \'=\'';
+        return null;
+    }
+
+    return null;
+
   }
   
   inline function parseEscape() : Int {
@@ -229,7 +345,54 @@ class LanguageParser {
     }
   }
 
-  function parseArray() : Null<SplufpExpr> {
+  function parseFuncBody() : Null<Array<SplufpExpr>> {
+    var body : Array<SplufpExpr> = [];    
+    var last_string = "";
+  
+    switch(nextString()) {
+      case str if(~/^\{/.match(str)):
+        pos -= str.length;
+      default:
+        throw "Expected '{' for function body";
+        return null;
+    }
+    
+    do {
+      
+      var expr : Null<SplufpExpr> = parseExpr(true, true);
+      if(expr == null) {
+        throw 'expected an expression';
+        return null;
+      }
+      body.push(expr);
+
+      last_string = nextString(true);
+      if(~/^.\+\}/.match(last_string)) {
+        pos -= last_string.length + 1;
+        ~/\}/.replace(str, '\n}');
+      }
+      else if( !~/^\}/.match(last_string)) {
+        pos -= last_string.length + 1;
+      } 
+
+
+    } while(last_string != '}');
+    
+
+    if(last_string.charAt(0) != '}') {
+      throw 'expected \'}\' to terminate function body';
+      return null;
+    }
+      
+
+    pos -= last_string.length;
+    return body;
+  }
+  
+  
+
+  function parseArray(): Null<SplufpExpr> {
+
     var arr = [];
     var last_string = "";
 
