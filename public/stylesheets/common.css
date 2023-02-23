@@ -1,0 +1,77 @@
+body {
+  color: var(--nord0);
+  background-color: var(--nord6);
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+
+  gap: 10px;
+
+  border-radius: 0px;
+
+  width: 100vw;
+  height: 5vw;
+} 
+
+.navbar-icon { 
+  display: inline-flex;
+  width: 10vw;
+  height: auto;
+}
+
+.navbar-links-container {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
+
+  gap: 0px;
+  flex-grow: 4;
+
+  list-style-type: none;
+  margin: 0px;
+}
+
+.navbar-link-element {
+  display: inline-flex;
+  flex-grow 3;
+  
+  transition: color 1s;
+  transition: background-color 1s;
+
+  align-items: center;
+  min-width: 10vw;
+  padding: 10px;
+
+  border-right: 1px black;
+}
+
+.navbar-link {
+  display: flex-inline;
+  flex-grow: 2;
+  
+  text-align: center;
+  font-size: 2vw;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-link:hover, .navbar-link:visited, .navbar-link:active, .navbar-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-link-element:hover {
+  text-decoration: none;
+  color: var(--nord2);
+  background-color: var(--nord5);
+}
+
+.inverse-color {
+  color: var(--nord6);
+  background-color: var(--nord0);
+}
