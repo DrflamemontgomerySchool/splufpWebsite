@@ -1,0 +1,3 @@
+[submodule "splufp-interpreter"]
+	path = splufp-interpreter
+	url = https://github.com/DrflamemontgomerySchool/splufp-interpreter
