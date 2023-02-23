@@ -166,11 +166,14 @@ class LanguageParser {
   }
 
 
-  function parseExpr(newline : Bool = false, variable_assignment : Bool = false) : Null<SplufpExpr> {
+  function parseExpr(deliminators : Null<Array<String>> = null, variable_assignment : Bool = false) : Null<SplufpExpr> {
 
-    var identifier : String = nextString(newline);
+    var identifier : String = nextString((deliminators == null) ? false : !deliminators.contains(''));
     switch(identifier) {
+      case b if(~/^\(/.match(b)):
 
+        pos -= b.length;
+        return parseExpr([')'], false);
       case n if(~/^null[^a-zA-Z0-9_]*/.match(n)):
         // if full variable name is 'null' retun null
 
@@ -310,6 +313,8 @@ class LanguageParser {
         pos--;
         
         return SVariableAssign(name, expr);
+      case _:
+        var expr
       case _ if(assignable):
         throw 'expected \'=\'';
         return null;
@@ -358,8 +363,8 @@ class LanguageParser {
     }
     
     do {
-      
-      var expr : Null<SplufpExpr> = parseExpr(true, true);
+       
+      var expr : Null<SplufpExpr> = parseExpr([], true);
       if(expr == null) {
         throw 'expected an expression';
         return null;
@@ -407,7 +412,7 @@ class LanguageParser {
 
     do {
 
-      var expr = parseExpr(true);
+      var expr = parseExpr([]);
       if(expr == null) {
         throw 'expected an expression';
         return null;
