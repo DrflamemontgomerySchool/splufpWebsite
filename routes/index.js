@@ -12,7 +12,9 @@ function nav_data(name, href) {
 router.get('/', function(req, res, next) {
   var pass_through_data = { title: 'Express', links:
     [
-      nav_data('Navbar1', '/Navbar1')
+      nav_data('Navbar1', '/Navbar1'),
+      nav_data('Navbar2', '/Navbar2'),
+      nav_data('Navbar3', '/Navbar3')
     ]
   };
   console.log(pass_through_data);
