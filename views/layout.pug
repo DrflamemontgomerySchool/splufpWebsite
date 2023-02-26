@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/nord.css')
     link(rel='stylesheet', href='/stylesheets/common.css')
+    block head_additional
   body
     block navbar
       div(class='inverse-color navbar')
@@ -20,5 +21,5 @@ html
             each link in links
               li(class='navbar-link-element')
                 a(class='navbar-link' href=link.href)=link.name
-
-    block content
+    div(class='container' style='width: 100%')
+      block content
