@@ -1,6 +1,13 @@
-extends layout
+extends layout-bootstrap
 
+block head_additional
+  link(rel='stylesheet', href='/stylesheets/index.css')
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class='row' style='padding-left: calc(50px + 1.5vw);')
+    div(class='col-sm-4')
+      div(class='splufp-lang-description-logo')
+        image(src='images/logo-light.svg' alt='The splufp language icon')
+    div(class='col-sm-8 splufp-lang-description-col')
+      div(class='splufp-lang-description-container')
+        p(class='splufp-lang-description') Splufp is a high level functional programming language that transpiles to javascript
