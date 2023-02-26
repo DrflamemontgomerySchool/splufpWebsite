@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title= title
+
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='icon' type='image/x-icon' href='/images/favicon.png')
+
+
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous") 
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    link(rel='stylesheet' href='/stylesheets/nord.css')
+    link(rel='stylesheet' href='/stylesheets/common-bootstrap.css')
+    block head_additional
+  body
+    block navbar
+      nav(class='dark navbar navbar-expand-sm' style='overflow: hidden;' id='top-navbar')
+
+        // clickable logo that leads back to the main page
+        a(class='navbar-brand navbar-expand-lg ' href='/' id='splufp-brand')
+          image(src='images/logo-horizontal-on-dark.svg' alt='The splufp language icon' width='100px' id='splufp-logo' class='nav-shadow dark')
+
+        // shows up when the width is too small
+        button(class='navbar-toggler dark' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle Navigation' id='navbar-toggler')
+          span(class='navbar-toggler-icon dark' id='navbar-icon')
+
+        // The list of navigation links
+        div(class='collapse navbar-collapse justify-content-center align-items-end' id='navbarSupportedContent')
+          ul(class='navbar-nav me-auto mb-2 mb-lg-0 justify-content-center' id='navbar-links')
+            // for every link passed in, create a link element
+            if links
+              each link in links
+                div(class='dropdown-divider dark')
+                li(class='nav-item nav-dropdown-item')
+                  a(class='nav-link dark' href=link.href)=link.name
+    div(class='container' style='width: 100%')
+      block content
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous")
