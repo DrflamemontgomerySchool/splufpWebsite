@@ -4,16 +4,15 @@ var navbar = require('./navbar');
 
 
 function create_doc(name, link) {
-  console.log(name, link);
   return {name: name, link: link};
 }
 
 const documentation_list = [
-  create_doc('home', '/home'),
+  create_doc('home', 'home'),
 
 
-  create_doc('introduction', '/introduction'),
-  create_doc('installation', '/installation')
+  create_doc('introduction', 'introduction'),
+  create_doc('installation', 'installation')
 ];
 
 function create_link(header, children)  {
@@ -41,10 +40,12 @@ render_information.sidebar = sidebar_links;
 
 for(doc of documentation_list) {
   console.log(`linking docs_${doc.name}`);
-  router.get(doc.link, function(req, res, next) {
-    res.render(`docs_${doc.name}`, render_information);
+  router.get(`/${doc.link}`, function(doc_link, doc_name) { return function(req, res, next) {
+    var ri = render_information;
+    ri.active_link = doc_link;
+    res.render(`docs_${doc_name}`, ri);
     next();
-  });
+  }}(doc.link, doc.name));
 }
 
 module.exports = router;
