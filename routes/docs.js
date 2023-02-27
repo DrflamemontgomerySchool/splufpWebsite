@@ -9,7 +9,11 @@ function create_doc(name, link) {
 }
 
 const documentation_list = [
-  create_doc('introduction', '/introduction')  
+  create_doc('home', '/home'),
+
+
+  create_doc('introduction', '/introduction'),
+  create_doc('installation', '/installation')
 ];
 
 function create_link(header, children)  {
@@ -32,13 +36,11 @@ const sidebar_links = [
   ])
 ];
 
-
-console.log(documentation_list);
-
 var render_information = navbar;
 render_information.sidebar = sidebar_links;
 
 for(doc of documentation_list) {
+  console.log(`linking docs_${doc.name}`);
   router.get(doc.link, function(req, res, next) {
     res.render(`docs_${doc.name}`, render_information);
     next();
