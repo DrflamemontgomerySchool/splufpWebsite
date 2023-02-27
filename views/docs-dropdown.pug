@@ -1,0 +1,22 @@
+extends layout-bootstrap
+
+block head_additional
+  link(rel='stylesheet' href='/stylesheets/docs.css')
+  block doc_head_additional
+
+block content-container
+  if sidebar
+    div(class='d-flex flex-column flex-shrink-0' style='width: 200px;')
+      for link in sidebar
+        ul(class='dropdown-menu show light' style='margin: 10px 10px; position: relative;')
+          if link.header
+            li
+              h6(class='light dropdown-header')= link.header
+            li
+              hr(class='dropdown-divider')
+          if link.children
+            for child in link.children
+              li
+                a(class='nav-hover-hint light dropdown-item' href=child.link)= child.name
+  div(class='container' style='width: 100%')
+    block doc_content
