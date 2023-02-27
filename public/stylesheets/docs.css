@@ -16,6 +16,15 @@
   color: var(--nord7);
 }
 
+.dropdown-item.active {
+  background-color: var(--nord9);
+}
+
+.nav-hover-hint.active:hover {
+  background-color: var(--nord10) !important; 
+  color: var(--nord6);
+}
+
 .fill-list {
   flex: 0 0 100%;
 }
