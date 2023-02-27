@@ -35,8 +35,12 @@
   flex: 0 0 100%;
 }
 
-.responsive {
+a.responsive {
   font-size: calc(8px + 1.5vw);
+}
+
+h6.responsive {
+  font-size: calc(4px + 1.3vw);
 }
 
 .fill-page {
