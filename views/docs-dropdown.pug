@@ -5,18 +5,24 @@ block head_additional
   block doc_head_additional
 
 block content-container
-  if sidebar
-    div(class='d-flex flex-column flex-shrink-0' style='width: 200px;')
-      for link in sidebar
-        ul(class='dropdown-menu show light' style='margin: 10px 10px; position: relative;')
-          if link.header
-            li
-              h6(class='light dropdown-header')= link.header
-            li
-              hr(class='dropdown-divider')
-          if link.children
-            for child in link.children
+  div(class='d-flex flex-row')
+    if sidebar
+      div(class='d-flex flex-column flex-shrink-0' style='width: 200px;')
+        for link in sidebar
+          ul(class='dropdown-menu show light' style='margin: 10px 10px; position: relative;')
+            if link.header
               li
-                a(class='nav-hover-hint light dropdown-item' href=child.link)= child.name
-  div(class='container' style='width: 100%')
-    block doc_content
+                h6(class='light dropdown-header')= link.header
+              li
+                hr(class='dropdown-divider')
+            if link.children
+              for child in link.children
+                li
+                  if active_link == child.link
+                    a(class='active nav-hover-hint light dropdown-item' href=child.link)= child.name
+                  else
+                    a(class='inactive nav-hover-hint light dropdown-item' href=child.link)= child.name
+    div(class='d-flex flex-column flex-shrink-0')
+      div(class='container' style='width: 100%')
+        block doc_content
+        h1= active_link
