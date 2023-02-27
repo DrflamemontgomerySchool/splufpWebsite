@@ -3,6 +3,22 @@ body, .light {
   background-color: var(--nord6);
 }
 
+.no-overflow-x {
+  overflow-x: hidden;
+}
+
+.no-overflow-y {
+  overflow-y: hidden;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
 .clearfix {
   overflow: auto;
 }
