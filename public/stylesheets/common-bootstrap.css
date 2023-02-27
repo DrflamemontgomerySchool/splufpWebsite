@@ -3,9 +3,8 @@ body, .light {
   background-color: var(--nord6);
 }
 
-#top-navbar {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+.clearfix {
+  overflow: auto;
 }
 
 #splufp-brand {
@@ -42,6 +41,37 @@ body, .light {
   background-color: #272e36 !important;
 }
 
+.dropdown-divider.light {
+  border-top: 1px solid var(--nord0);
+}
+
+.nav-hover-hint {
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.nav-hover-hint:hover {
+  color: var(--nord10);
+}
+
+.nav-hover-hint.light:hover {
+  background-color: var(--nord4);
+}
+
+.nav-hover-hint.dark:hover {
+  background-color: var(--nord3);
+}
+
+.nav-shadow.light {
+  transition: box-shadow 0.1s;
+  color: var(--nord0) !important;
+}
+
+.nav-shadow.light:hover {
+  box-shadow: 0px 0px 3px 12px #272e36 !important;
+  background-color: #272e36 !important;
+}
+
 .nav-link {
   padding-left: 40px;
 }
@@ -51,6 +81,10 @@ body, .light {
   background-color: var(--nord0);
 }
 
+.light {
+  color: var(--nord0);
+  background-color: var(--nord6);
+}
 
 .inverse-color {
   color: var(--nord6);
