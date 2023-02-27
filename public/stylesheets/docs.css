@@ -1,0 +1,25 @@
+.sidebar {
+  border-style: none solid none none;
+  border-width: 1px;
+}
+
+.sidebar.dark {
+  border-color: var(--nord6);
+}
+
+.sidebar.light {
+  border-color: var(--nord0);
+}
+
+.nav-divider {
+  margin: 0px 0px;
+  color: var(--nord7);
+}
+
+.fill-list {
+  flex: 0 0 100%;
+}
+
+.fill-page {
+  height: 100%;
+}
