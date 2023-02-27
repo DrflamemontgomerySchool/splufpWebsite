@@ -20,9 +20,15 @@
   background-color: var(--nord9);
 }
 
-.nav-hover-hint.active:hover {
-  background-color: var(--nord10) !important; 
+.nav-hover-hint.active.light:hover {
   color: var(--nord6);
+}
+
+.nav-hover-hint.active.dark:hover {
+  color: var(--nord0);
+}
+.nav-hover-hint.active:hover {
+  background-color: var(--nord9) !important; 
 }
 
 .fill-list {
