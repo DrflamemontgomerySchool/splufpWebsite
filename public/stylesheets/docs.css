@@ -35,6 +35,10 @@
   flex: 0 0 100%;
 }
 
+.responsive {
+  font-size: calc(8px + 1.5vw);
+}
+
 .fill-page {
   height: 100%;
 }
