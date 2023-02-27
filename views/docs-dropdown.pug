@@ -19,7 +19,7 @@ block content-container
               for child in link.children
                 li
                   if active_link == child.link
-                    a(class='active nav-hover-hint light dropdown-item' href=child.link)= child.name
+                    a(class='active nav-hover-hint light dropdown-item')= child.name
                   else
                     a(class='inactive nav-hover-hint light dropdown-item' href=child.link)= child.name
     div(class='d-flex flex-column flex-shrink-0')
