@@ -2,6 +2,9 @@
   border-radius: 4px;
 }
 
+/*
+ * Hides the cursor if you aren't on the ace editor
+ */
 .ace_hidden-cursors {
   opacity: 0;
 }
