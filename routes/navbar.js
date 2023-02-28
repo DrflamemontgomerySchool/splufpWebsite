@@ -1,5 +1,7 @@
 var express = require('express')
 
+
+// helper function for generating navigation data
 function nav_data(name, href) {
   return {
     name: name,
@@ -7,6 +9,8 @@ function nav_data(name, href) {
   };
 }
 
+
+// This variable is exported so that every other file does not need to rewrite the navigation info
 const navigation_headers = { title: 'Express', links:
   [
     nav_data('Home', '/'),
