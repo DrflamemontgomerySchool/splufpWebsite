@@ -2,14 +2,52 @@ extends layout-bootstrap
 
 block head_additional
   link(rel='stylesheet' href='/stylesheets/docs.css')
+  link(rel='stylesheet' href='/stylesheets/code-editor.css')
   block doc_head_additional
 
 block content-container
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/ace.min.js" integrity="sha512-e1Y1L6lY7YKDe+zseybZUG8MYUMLA1jxMQAPJqRYiA4L8NPaXfW+h52QQTLurHW4w3b21LxH/u1sZYMBtoB70w==" crossorigin="anonymous" referrerpolicy="no-referrer")
+  script.
+    ace.config.setModuleUrl(
+      "ace/theme/nord_dark",
+      "http://ajaxorg.github.io/ace-builds/src-noconflict/theme-nord_dark.js"
+    );
+    ace.config.setModuleUrl(
+      "ace/mode/javascript",
+      "http://ajaxorg.github.io/ace-builds/src-noconflict/mode-javascript.js"
+    );
+    function make_editor(name) {
+      var editor = ace.edit(name);
+      editor.setShowPrintMargin(false);
+      editor.setTheme('ace/theme/nord_dark');
+      editor.session.setMode('ace/mode/javascript');
+      
+      var elem_classes = document.getElementById(name).classList;
+      console.log(elem_classes);
+      for(c of elem_classes) {
+        switch(c) {
+          case 'ace_readonly':
+            editor.setOption('readOnly', true);
+            editor.setOption('highlightActiveLine', true);
+            break;
+          case 'ace_hide_line_numbers':
+            editor.setOption('showLineNumbers', false);
+            break;
+        }
+        // matches strings that are ace_line-height-NUMOFLINES
+        const re = /^ace_line-height-([0-9]*)$/;
+        if(c.match(re)) {
+          // extract number value and set maxLines
+          editor.setOption('maxLines', parseInt(c.replace(re, '$1')));
+        }
+      }
+    }
+
   div(class='d-flex flex-row align-items-stretch no-overflow-x')
     if sidebar
       div(class='d-inline-flex flex-column')
         for link in sidebar
-          ul(class='dropdown-menu show light' style='min-width: 20vw; margin: 10px 10px; position: relative;')
+          ul(class='dropdown-menu show light sidebar' style='margin: 10px 10px; position: relative;')
             if link.header
               li
                 h6(class='light dropdown-header responsive')= link.header
@@ -22,6 +60,5 @@ block content-container
                     a(class='active nav-hover-hint light dropdown-item responsive')= child.name
                   else
                     a(class='inactive nav-hover-hint light dropdown-item responsive' href=child.link)= child.name
-    div(class='d-inline-flex flex-column justify-content-start' style='padding: 10px 30px 10px;')
+    div(class='d-inline-flex flex-column justify-content-start' style='padding: 10px 10vw 10px;')
       block doc_content
-      h1= active_link
