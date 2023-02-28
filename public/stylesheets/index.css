@@ -1,51 +1,10 @@
-.splufp-lang-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-content: center;
-
-  padding: 20px;
-
-  width: 100vw;
-  height: 30vw;
-}
-
-.splufp-lang-description-col {
-  min-height: 40vw;
-
-  padding-left: 10px;
-}
-
-.splufp-lang-description-container {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 5;
-
-  align-items: center;
-  padding: calc(10px + 1.5vw) calc(10px + 1.5vw);
-
-  min-height: 40vw;
-}
-
-.splufp-lang-description-logo {
-  height: 40vw;
-
-  display: flex;
-  flex-grow: 100;
-  justify-content: center;
-  align-items: stretch;
-
-  padding: 20px 20px;
+.splufp-lang-logo {
+  min-width: 40vw;
 }
 
 .splufp-lang-description {
-  display: inline-flex;
-  flex-grow 12;
+  padding-left: 30px;
+  padding-right: 30px;
 
-  text-align: left;
   font-size: calc(10px + 1.5vw);
-
-  color: inherit;
-
-  width: 40vw;
 }
