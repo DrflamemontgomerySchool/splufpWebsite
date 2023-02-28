@@ -1,77 +1,120 @@
-body {
+body, .light {
   color: var(--nord0);
   background-color: var(--nord6);
 }
 
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-content: flex-start;
+.no-overflow-x {
+  overflow-x: hidden;
+}
 
-  gap: 10px;
+.no-overflow-y {
+  overflow-y: hidden;
+}
 
-  border-radius: 0px;
-
+.full-width {
   width: 100%;
-  height: 60px;
-} 
-
-.navbar-icon { 
-  display: inline-flex;
-  width: 10vw;
-  height: auto;
 }
 
-.navbar-links-container {
-  display: inline-flex;
-  flex-direction: row-reverse;
-  align-items: stretch;
-
-  gap: 0px;
-  flex-grow: 4;
-
-  list-style-type: none;
-  margin: 0px;
+.full-height {
+  height: 100%;
 }
 
-.navbar-link-element {
-  display: inline-flex;
-  flex-grow 3;
-  
-  transition: color 0.6s;
-  transition: background-color 0.6s;
-
-  align-items: center;
-  min-width: 10vw;
-  padding: 10px;
-
-  border-right: 1px black;
+.clearfix {
+  overflow: auto;
 }
 
-.navbar-link {
-  display: flex-inline;
-  flex-grow: 2;
-  
-  text-align: center;
-  font-size: 20px;
-
-  text-decoration: none;
-  color: inherit;
+#splufp-brand {
+  padding-left: 10px;
 }
 
-.navbar-link:hover, .navbar-link:visited, .navbar-link:active, .navbar-link:focus {
-  text-decoration: none;
-  color: inherit;
+#navbarSupportedContent {
+  margin-bottom: -5px;
 }
 
-.navbar-link-element:hover {
-  text-decoration: none;
-  color: var(--nord2);
-  background-color: var(--nord5);
+#navbar-toggler {
+  margin-right: 10px;
+}
+
+#navbar-links {
+  margin-bottom: -10px;
+}
+
+.nav-dropdown-item {
+  margin-top: .2rem;
+}
+
+.dropdown-divider.dark {
+  border-top: 1px solid var(--nord1);
+}
+
+.nav-shadow.dark {
+  transition: box-shadow 0.1s;
+  color: var(--nord6) !important;
+}
+
+.nav-shadow.dark:hover {
+  box-shadow: 0px 0px 3px 12px #272e36 !important;
+  background-color: #272e36 !important;
+}
+
+.dropdown-divider.light {
+  border-top: 1px solid var(--nord0);
+}
+
+.nav-hover-hint {
+  transition: color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.nav-hover-hint:hover {
+  color: var(--nord10);
+}
+
+.nav-hover-hint.light:hover {
+  background-color: var(--nord4);
+}
+
+.nav-hover-hint.dark:hover {
+  background-color: var(--nord3);
+}
+
+.nav-shadow.light {
+  transition: box-shadow 0.1s;
+  color: var(--nord0) !important;
+}
+
+.nav-shadow.light:hover {
+  box-shadow: 0px 0px 3px 12px #272e36 !important;
+  background-color: #272e36 !important;
+}
+
+.nav-link {
+  padding-left: 40px;
+}
+
+.dark {
+  color: var(--nord6);
+  background-color: var(--nord0);
+}
+
+.light {
+  color: var(--nord0);
+  background-color: var(--nord6);
 }
 
 .inverse-color {
   color: var(--nord6);
   background-color: var(--nord0);
+}
+
+#navbar-toggler.dark {
+  border: 1px solid var(--nord6);
+}
+
+#navbar-icon.dark {
+  /*
+   * Uses the w3schools image for expanding the navigation bar but
+   * changes the colors of the image
+   */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28236, 239, 244, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
