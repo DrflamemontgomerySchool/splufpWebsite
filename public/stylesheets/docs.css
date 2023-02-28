@@ -1,14 +1,5 @@
 .sidebar {
-  border-style: none solid none none;
-  border-width: 1px;
-}
-
-.sidebar.dark {
-  border-color: var(--nord6);
-}
-
-.sidebar.light {
-  border-color: var(--nord0);
+  min-width: calc(30px + 10vw);
 }
 
 .nav-divider {
@@ -36,11 +27,13 @@
 }
 
 a.responsive {
-  font-size: calc(8px + 1.5vw);
+  /*font-size: calc(8px + 1.5vw);*/
+  font-size: calc(8pt + 0.6vw);
 }
 
 h6.responsive {
-  font-size: calc(4px + 1.3vw);
+  font-size: calc(6pt + 0.6vw);
+  /*font-size: calc(4px + 1.3vw);*/
 }
 
 .fill-page {
