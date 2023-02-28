@@ -1,7 +1,13 @@
+
+/* Make the logo resize */
 .splufp-lang-logo {
   min-width: 40vw;
 }
 
+/*****
+ * Add some padding so it looks nice when it fills underneath the logo
+ * Make the font responsive  
+ *****/
 .splufp-lang-description {
   padding-left: 30px;
   padding-right: 30px;
