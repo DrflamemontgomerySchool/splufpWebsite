@@ -16,8 +16,29 @@ block doc_content
   h2(class='doc-content-header') Hello World
 
   p The classic <strong>Hello World</strong> program is not that different from other languages
+  
 
-  div(id='hello-world' class='ace_min-line-height-1 ace_line-height-1 ace_readonly ace_hide_line_numbers') log "Hello World"
+  div(id='hello-world-splufp' class='ace_min-line-height-3 ace_line-height-3 ace_readonly ace_hide_line_numbers').
+    main {
+      log "Hello World"
+    }
+  h2(class='doc-content-header') Where are the Brackets?
 
+  p.
+    The syntax of Splufp is based on
+    <a class='content-link' href='https://www.haskell.org/'>Haskell</a>
+    and
+    <a class='content-link' href='https://lisp-lang.org/'>Clisp</a>
+    . Splufp takes inspiration of the whitespace approach by Haskell and pairs it with
+    the flexibility of Clisp variables
+  
+  h4 Haskell
+  div(id='hello-world-haskell' class='ace_min-line-height-1 ace_line-height-1 ace_readonly ace_hide_line_numbers').
+    main = putStrLn "Hello World!"
+  h4(style='margin-top: 10px;') Clisp
+  div(id='hello-world-lisp' class='ace_min-line-height-1 ace_line-height-1 ace_readonly ace_hide_line_numbers').
+    (format t "Hello World!~%")
   script.
-    make_editor('hello-world');
+    make_editor('hello-world-splufp');
+    make_editor('hello-world-haskell', 'haskell');
+    make_editor('hello-world-lisp', 'lisp');
