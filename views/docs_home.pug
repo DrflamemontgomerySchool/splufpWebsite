@@ -1,12 +1,23 @@
 extends docs
 
+block title_name
+  title What is Splufp? - Splufp
+
 block doc_head_additional
 
 block doc_content
   h1 What is Splufp?
-  p Splufp is a functional language that compiles to javascript. Splufp is heavily focused on simplicity in syntax. 
-  
-  div(id='home-editor' class='ace_line-height-1 ace_readonly ace_hide_line_numbers') Hello World
+  p.
+    Splufp is a functional language that compiles to javascript.
+    Splufp is heavily focused on simplicity in syntax and ease of reading
+    It uses dynamic typing and can use external javascript functions
+  p Splufp aims at making your code easy to understand and to quicken your workflow
+
+  h2(class='doc-content-header') Hello World
+
+  p The classic <strong>Hello World</strong> program is not that different from other languages
+
+  div(id='hello-world' class='ace_min-line-height-1 ace_line-height-1 ace_readonly ace_hide_line_numbers') log "Hello World"
 
   script.
-    make_editor('home-editor');
+    make_editor('hello-world');
