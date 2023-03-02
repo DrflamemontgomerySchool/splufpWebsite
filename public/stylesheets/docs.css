@@ -1,3 +1,14 @@
+.sidebar-container {
+  width: calc(150px + 2vw);
+}
+
+@media only screen and (max-width: 652px) {
+  .sidebar-container {
+    margin-left: 30px;
+    width: calc(100% - 40px);
+  }
+}
+
 .sidebar {
   min-width: calc(30px + 10vw);
 }
@@ -38,4 +49,8 @@ h6.responsive {
 
 .fill-page {
   height: 100%;
+}
+
+.doc-content-header {
+  margin-top: 30px;
 }
