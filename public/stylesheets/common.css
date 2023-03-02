@@ -11,6 +11,10 @@ body, .light {
   overflow-y: hidden;
 }
 
+.fill-width-vw {
+ width: 100vw;
+}
+
 .full-width {
   width: 100%;
 }
