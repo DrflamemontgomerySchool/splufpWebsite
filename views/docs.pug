@@ -13,49 +13,7 @@ block content-container
   script(src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/ace.min.js" integrity="sha512-e1Y1L6lY7YKDe+zseybZUG8MYUMLA1jxMQAPJqRYiA4L8NPaXfW+h52QQTLurHW4w3b21LxH/u1sZYMBtoB70w==" crossorigin="anonymous" referrerpolicy="no-referrer")
   
 
-  script.
-    // setup the styles and modes
-    ace.config.setModuleUrl(
-      "ace/theme/nord_dark",
-      "http://ajaxorg.github.io/ace-builds/src-noconflict/theme-nord_dark.js"
-    );
-    ace.config.setModuleUrl(
-      "ace/mode/javascript",
-      "http://ajaxorg.github.io/ace-builds/src-noconflict/mode-javascript.js"
-    );
-    function make_editor(name) {
-      var editor = ace.edit(name);
-      editor.setShowPrintMargin(false); // Gets rid of the annoying line in the middle
-      editor.setTheme('ace/theme/nord_dark');
-      editor.session.setMode('ace/mode/javascript');
-
-      // Setup options from element classes
-      var elem_classes = document.getElementById(name).classList;
-      for(c of elem_classes) {
-        switch(c) {
-          case 'ace_readonly':
-            editor.setOption('readOnly', true);
-            editor.setOption('highlightActiveLine', true);
-            break;
-          case 'ace_hide_line_numbers':
-            editor.setOption('showLineNumbers', false);
-            break;
-        }
-        // matches strings that are ace_line-height-NUMOFLINES
-        const re = /^ace_line-height-([0-9]*)$/;
-        if(c.match(re)) {
-          // extract number value and set maxLines
-          editor.setOption('maxLines', parseInt(c.replace(re, '$1')));
-          continue;
-        }
-        const min_re = /^ace_min-line-height-([0-9]*)$/;
-        if(c.match(min_re)) {
-          // extract number value and set maxLines
-          editor.setOption('minLines', parseInt(c.replace(min_re, '$1')));
-          continue;
-        }
-      }
-    }
+  script(src='/javascripts/editor.js')
 
   div(class='d-flex flex-row align-items-stretch no-overflow-x row fill-width-vw')
     // Generates the sidebar dropdowns for the documentation page
