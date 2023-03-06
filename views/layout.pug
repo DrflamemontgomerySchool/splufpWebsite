@@ -16,31 +16,81 @@ html
     link(rel='stylesheet' href='/stylesheets/nord.css')
     link(rel='stylesheet' href='/stylesheets/common.css')
     block head_additional
-  body(style='height: 100vh;')
-    block navbar
-      nav(class='dark navbar navbar-expand-sm' style='overflow: hidden;' id='top-navbar')
 
-        // clickable logo that leads back to the main page
-        a(class='navbar-brand navbar-expand-lg ' href='/' id='splufp-brand')
-          image(src='/images/logo-horizontal-on-dark.svg' alt='The splufp language icon' width='100px' id='splufp-logo' class='nav-shadow dark')
 
-        // shows up when the width is too small
-        button(class='navbar-toggler dark' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle Navigation' id='navbar-toggler')
-          span(class='navbar-toggler-icon dark' id='navbar-icon')
+  body(style='min-height: 100vh;')
 
-        // The list of navigation links
-        div(class='collapse navbar-collapse justify-content-center align-items-end' id='navbarSupportedContent')
-          ul(class='navbar-nav me-auto mb-2 mb-lg-0 justify-content-center' id='navbar-links')
-            // for every link passed in, create a link element
-            if links
-              each link in links
-                div(class='dropdown-divider dark')
-                li(class='nav-item nav-dropdown-item')
-                  a(class='nav-link dark' href=link.href)=link.name
-    block before-content
-    block content-container
-      div(class='container' style='width: 100%')
-        block content
-    block after-content
+    // create a container for page content
+    div(class='d-flex flex-column full-vh')
+
+      // main page content container (everything except footer)
+      div(class='d-inline-flex flex-grow-1 flex-column fill-height')
+        block navbar
+          nav(class='dark navbar navbar-expand-sm' style='overflow: hidden;' id='top-navbar')
+  
+            // clickable logo that leads back to the main page
+            a(class='navbar-brand navbar-expand-lg ' href='/' id='splufp-brand')
+              image(src='/images/logo-horizontal-on-dark.svg' alt='The splufp language icon' width='100px' id='splufp-logo' class='nav-shadow dark')
+
+            // shows up when the width is too small
+            button(class='navbar-toggler dark' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle Navigation' id='navbar-toggler')
+              span(class='navbar-toggler-icon dark' id='navbar-icon')
+
+            // The list of navigation links
+            div(class='collapse navbar-collapse justify-content-center align-items-end' id='navbarSupportedContent')
+              ul(class='navbar-nav me-auto mb-2 mb-lg-0 justify-content-center' id='navbar-links')
+                // for every link passed in, create a link element
+                if links
+                  each link in links
+                    div(class='dropdown-divider dark')
+                    li(class='nav-item nav-dropdown-item')
+                      a(class='nav-link dark' href=link.href)=link.name
+        block before-content
+        block content-container
+          div(class='container' style='width: 100%')
+            block content
+        block after-content
+      
+
+      // Make footer shrink onto the footer content
+      footer(class='dark d-inline-flex flex-row flex-shrink-0' id='page-footer')
+
+        // content for footer
+        div(class='container p-4')
+
+          // List of Main footer links
+          div(class='row d-flex')
+            div(class='d-inline-flex flex-column col-lg-3 col-md-4 mb-4')
+              a(class='footer-link footer-header' href='/') Home
+              a(class='footer-link footer-header' href='https://github.com/DrflamemontgomerySchool/splufp-interpreter/releases/tag/v0.2.0-alpha') Download
+              a(class='footer-header' href='/help') Help
+
+            div(class='d-inline-flex flex-column col-lg-3 col-md-4 mb-4')
+              p(class='footer-header') About
+              a(class='footer-link' href='mailto:ashton.warner@kingsway.school.nz') Contact
+
+            div(class='d-inline-flex flex-column col-lg-3 col-md-4 mb-4') 
+              p(class='footer-header') Learn Splufp
+              a(class='footer-link' href='/docs/introduction') Introduction
+              a(class='footer-link' href='/api/home') API Documentation
+             
+      // div(class='dark fill-width-vw' id='footer')
+        div(class='d-flex flex-row row justify-content-start dark fill-width-vw' id='page-footer')
+
+          div(class='d-inline-flex flex-shrink-0 justify-content-start flex-column footer-element col-sm')
+            a(class='footer-link footer-header' href='/') Home
+            a(class='footer-link footer-header' href='https://github.com/DrflamemontgomerySchool/splufp-interpreter/releases/tag/v0.2.0-alpha') Download
+            a(class='footer-header' href='/help') Help
+
+          div(class='d-inline-flex flex-shrink-0 justify-content-start flex-column footer-element col-sm')
+            p(class='footer-header') About
+            a(class='footer-link' href='mailto:ashton.warner@kingsway.school.nz') Contact
+
+          div(class='d-inline-flex flex-shrink-0 justify-content-start flex-column footer-element col-sm')
+            p(class='footer-header') Learn Splufp
+            a(class='footer-link' href='/docs/introduction') Introduction
+            a(class='footer-link' href='/api/home') API Documentation
+
+
     // Link the bootstrap scripts
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous")
