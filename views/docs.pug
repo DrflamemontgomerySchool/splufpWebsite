@@ -16,9 +16,22 @@ block content-container
   script(src='/javascripts/editor.js')
 
   div(class='d-flex flex-row align-items-stretch no-overflow-x row fill-width-vw')
+
+
+    // variables for generating the next and previous links
+    - var next_link = false
+    - var prev_link = false
+
+
     // Generates the sidebar dropdowns for the documentation page
     if sidebar
       div(class='d-inline-flex flex-column col-sm-3 sidebar-container')
+        
+        // variables for helping set previous and next links
+        - var have_prev_link = false
+        - var get_next_link = false
+
+
         for link in sidebar
           ul(class='dropdown-menu show light sidebar' style='margin: 10px 10px; position: relative;')
             // Only add a header if we have one
@@ -31,16 +44,41 @@ block content-container
 
             if link.children
               for child in link.children
+
+                if get_next_link
+                  // do not get the next link again
+                  - get_next_link = false
+                  - next_link = child
+
                 li
                   // Set up the correct highlighting and href for the links
                   // The current page is always highlighted and unable to be clicked
                   if active_link == child.link
                     a(class='active nav-hover-hint light dropdown-item responsive')= child.name
+
+                    // allow getting next link
+                    - get_next_link = true
+
+                    // stops us overiding the previous link
+                    - have_prev_link = true
                   else
                     a(class='inactive nav-hover-hint light dropdown-item responsive' href=child.link)= child.name
+                if !have_prev_link
+                  - prev_link = child
+
+
+
     // add the content container
     div(class='d-inline-flex flex-column justify-content-start col-sm-9' style='padding: 10px 10vw 10px;')
       block doc_content
       div(class='d-inline-flex flex-row justify-content-between' style='margin-top: 30px;')
-        a(class='prev-link' href='/') Test 1
-        a(class='next-link' href='/') Test 2
+        if prev_link
+          a(class='prev-link' href=prev_link.link)= prev_link.name 
+        else
+          // placeholder to preserve formatting
+          div
+            p(style='display: none;') There is no previous link to go to
+
+        if next_link
+          // we do not need a formatting preserver for this one because it doesn't affect anything if it is gone
+          a(class='next-link' href=next_link.link)= next_link.name
