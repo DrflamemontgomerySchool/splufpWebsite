@@ -22,7 +22,8 @@ block doc_content
     main {
       log "Hello World"
     }
-  h2(class='doc-content-header') Where are the Brackets?
+  // You cannot leave a line underneath an editor otherwise you can scroll when you shouldn't
+  h2(class='doc-content-header') Where did the Brackets go?
 
   p.
     The syntax of Splufp is based on
@@ -38,6 +39,8 @@ block doc_content
   h4(style='margin-top: 10px;') Clisp
   div(id='hello-world-lisp' class='ace_min-line-height-1 ace_line-height-1 ace_readonly ace_hide_line_numbers').
     (format t "Hello World!~%")
+  // This comment ends the lisp section
+
   script.
     make_editor('hello-world-splufp');
     make_editor('hello-world-haskell', 'haskell');
