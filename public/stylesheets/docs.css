@@ -60,3 +60,18 @@ h6.responsive {
 
   color: inherit;
 }
+
+.prev-link, .next-link {
+  text-decoration: none;
+  color: var(--nord10);
+}
+
+.next-link::after {
+  content: "\00bb";
+  padding-left: 4px;
+}
+
+.prev-link::before {
+  content: "\00ab";
+  padding-right: 4px;
+}
