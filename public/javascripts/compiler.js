@@ -20,7 +20,7 @@ function compile_code() {
 
 function run_code() {
   document.getElementById('text-output').textContent = '';
-  eval(executable);
+  eval(`${executable}; __spl__main.call();`);
 }
 
 console.log = function(str) {
