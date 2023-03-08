@@ -14,7 +14,8 @@ function nav_data(name, href) {
 const navigation_headers = { title: 'Express', links:
   [
     nav_data('Home', '/'),
-    nav_data('Documentation', '/docs/home')
+    nav_data('Documentation', '/docs/home'),
+    nav_data('Try Splufp', '/editor')
   ]
 };
 
