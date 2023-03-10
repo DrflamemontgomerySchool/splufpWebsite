@@ -24,7 +24,7 @@ block content
       }
     div(id='editor-output' class='col-sm-5 light')
       div(id='graphics-output' style='height: 70%;')
-        canvas(id="graphics-canvas")
+        canvas(id="graphics-canvas" width='400px' height='400px')
       hr
       div(style='height: 20%')
         textarea(id='text-output' readonly)
@@ -34,4 +34,5 @@ block content
   // End script
   script(src='/javascripts/compiler.js')
   script(src='/splufp/splufp-lang.js')
+  script(src='/splufp/splufp-lang-web.js')
 
