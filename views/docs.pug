@@ -31,18 +31,25 @@ block content-container
         - var have_prev_link = false
         - var get_next_link = false
 
-
+        - var have_header = false
+        - var collapseId = 0
         for link in sidebar
           ul(class='dropdown-menu show light sidebar' style='margin: 10px 10px; position: relative;')
-            // Only add a header if we have one
+            // Only add a header if we have one 
             if link.header
-              li
-                h6(class='light dropdown-header responsive')= link.header
-              li
-                hr(class='dropdown-divider')
-
+              - collapseId += 1
+              - have_header = true
+              li(class='dropdown-header-list')
+                a(class='dropdown-item responsive nav-hover-hint light inactive'
+                  data-bs-toggle='collapse'
+                  data-bs-target=`#collapse${collapseId}`
+                  aria-expanded='false'
+                  aria-controls=`collapse${collapseId}`
+                  href='#'
+                  )=link.header
 
             if link.children
+              - var first_link = true
               for child in link.children
 
                 if get_next_link
@@ -50,7 +57,14 @@ block content-container
                   - get_next_link = false
                   - next_link = child
 
-                li
+                - var list_class = 'dropdown-list-elem'
+
+                if first_link
+                  - first_link = false
+                  - list_class += ' dropdown_after_header'
+                if have_header
+                  - list_class += ' collapse'
+                li(class=`${list_class}` id=`collapse${collapseId}`)
                   // Set up the correct highlighting and href for the links
                   // The current page is always highlighted and unable to be clicked
                   if active_link == child.link
