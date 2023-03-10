@@ -20,6 +20,10 @@ function compile_code() {
 
 function run_code() {
   document.getElementById('text-output').textContent = '';
+  var canvas = document.getElementById('graphics-canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   eval(`${executable}; __spl__main.call();`);
 }
 
