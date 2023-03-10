@@ -20,6 +20,10 @@
 
 #graphics-output {
   margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
 }
 
 #graphics-canvas {
@@ -27,16 +31,14 @@
   top: 0;
   left: 0;
 
-  width: 100%;
-  height: 100%;
 
   margin-top: 10px;
   margin-bottom: 10px;
 
-  border-style: solid;
+  /*border-style: solid;
   border-radius: 2px;
   border-color: var(--nord3);
-  border-width: 1px;
+  border-width: 1px;*/
 }
 
 #editor-content {
