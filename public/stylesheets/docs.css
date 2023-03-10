@@ -18,6 +18,34 @@
   color: var(--nord7);
 }
 
+.dropdown-menu {
+  overflow: hidden;
+}
+
+.dropdown-header-list {
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.dropdown_after_header.collapsing {
+  margin-top: 8px;
+}
+.dropdown_after_header.collapse {
+  margin-top: 8px;
+}
+
+.dropdown-list-elem:first-child {
+  margin-top: -8px;
+}
+
+.dropdown-list-elem:last-child {
+  margin-bottom: -8px; 
+}
+
+.dropdown-item:focus {
+  background-color: var(--nord6);
+}
+
 .dropdown-item.active {
   background-color: var(--nord9);
 }
