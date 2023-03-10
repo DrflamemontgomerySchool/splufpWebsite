@@ -45,6 +45,7 @@ body, .light {
 
 #navbar-links {
   margin-bottom: -10px;
+  gap: 10px;
 }
 
 .nav-dropdown-item {
@@ -96,8 +97,10 @@ body, .light {
   background-color: #272e36 !important;
 }
 
+
 .nav-link {
   padding-left: 40px;
+  font-size: 20px;
 }
 
 .dark {
@@ -146,14 +149,6 @@ body, .light {
 .container-wrap {
   padding-bottom: 4rem;
 }
-
-/*#page-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4rem;
-
-}*/
 
 .footer-element {
   margin-left: 70px;

@@ -1,8 +1,15 @@
 .ace_readonly, .ace_edit {
+  padding-bottom: 5px;
   border-radius: 4px;
 }
 
+.ace_gutter, .ace_scroller {
+  top: 5px;
+}
 
+.ace_editor {
+  padding-bottom: 25px;
+}
 
 /*
  * Hides the cursor if you aren't on the ace editor
