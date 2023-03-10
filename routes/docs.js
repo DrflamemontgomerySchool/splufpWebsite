@@ -14,8 +14,8 @@ const documentation_list = [
   create_doc('home', 'home'),
 
 
-  create_doc('introduction', 'introduction'),
-  create_doc('installation', 'installation')
+  create_doc('installation', 'installation'),
+  create_doc('introduction', 'introduction')
 ];
 
 
@@ -30,8 +30,8 @@ const sidebar_links = [
   ]),
 
   create_link('Getting Started', [
-      create_doc('Introduction', 'introduction'),
-      create_doc('Installation', 'installation')
+      create_doc('Installation', 'installation'),
+      create_doc('Introduction', 'introduction')
   ])
 ];
 
