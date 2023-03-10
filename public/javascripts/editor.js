@@ -25,7 +25,9 @@ function make_editor(name, mode = 'javascript') {
   editor.setShowPrintMargin(false); // Gets rid of the annoying line in the middle
   editor.setTheme('ace/theme/nord_dark');
   editor.session.setMode(`ace/mode/${mode}`);
+  editor.renderer.setPadding(2);
 
+  editor.setOption('tabSize', 2);
   // Setup options from element classes
   var elem_classes = document.getElementById(name).classList;
   for(c of elem_classes) {
