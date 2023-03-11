@@ -3,6 +3,14 @@ body, .light {
   background-color: var(--nord6);
 }
 
+code {
+  padding: 0 .125rem;
+  color: inherit;
+  background: #b8bec9;
+  border-radius: .125rem;
+  font-size: .875rem;
+}
+
 .no-overflow-x {
   overflow-x: hidden;
 }
