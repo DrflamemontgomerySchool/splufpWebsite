@@ -4,4 +4,28 @@ block title_name
   title Introduction - Splufp
 
 block doc_content
-  h1 introduction
+  h1 Introduction
+
+  p.
+    If you have not already installed Splufp, go and check out the
+    #[a(class='content-link' href='installation') Installation Guide]
+
+  h1 Compiling Hello World
+
+  p Create a new folder named #[code hello] and navigate into that folder.
+  p cp #[code spl/spl-base.spl] and #[code spl-extern/splufp-lang.js] from the splufp package to the project folder.
+  p Make a file named #[code main.spl].
+  p Open #[code main.spl] and write the following code inside.
+  div(id='hello-world' class='ace_min-line-height-4 ace_line-height-4 ace_readonly ace_hide_line_numbers').
+    main {
+      log "Hello World"
+    }
+  p Save #[code main.spl].
+
+  p To compile the code, I will use the nodeJS version of the transpiler.
+  p Replace PATH_TO_SPLUFP_TRANSPILER with the path to where your version of the transpiler is located.
+  code node PATH_TO_SPLUFP_TRANSPILER --out=hello_world.js spl-base.spl main.spl
+
+  script.
+    make_editor('hello-world');
+  
