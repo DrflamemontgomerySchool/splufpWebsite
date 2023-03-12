@@ -12,20 +12,38 @@ block doc_content
 
   h1 Compiling Hello World
 
+  p For this example, I will be using the nodeJS version of the transpiler.
+  p Replace #[code PATH_TO_SPLUFP_TRANSPILER] with the path to where your version of the transpiler is located.
   p Create a new folder named #[code hello] and navigate into that folder.
-  p cp #[code spl/spl-base.spl] and #[code spl-extern/splufp-lang.js] from the splufp package to the project folder.
+  p Run the command #[code node PATH_TO_SPLUFP_TRANSPILER init_project]
   p Make a file named #[code main.spl].
-  p Open #[code main.spl] and write the following code inside.
+  p Open #[code main.spl] and write the following code.
   div(id='hello-world' class='ace_min-line-height-4 ace_line-height-4 ace_readonly ace_hide_line_numbers').
     main {
       log "Hello World"
     }
-  p Save #[code main.spl].
+  
+  p Now we can compile the code with the transpiler.
+  code node PATH_TO_SPLUFP_TRANSPILER --out=main.js main.spl
 
-  p To compile the code, I will use the nodeJS version of the transpiler.
-  p Replace PATH_TO_SPLUFP_TRANSPILER with the path to where your version of the transpiler is located.
-  code node PATH_TO_SPLUFP_TRANSPILER --out=hello_world.js spl-base.spl main.spl
+  p You should get a file named #[code main.js] which can be used in javascript projects.
+
+  h1 Running Hello World
+
+  p You can run the hello world program in the browser. For example, by writing the following code in #[code index.html] we can see the output when we open the console tab in the page inspector.
+  div(id='hello-world-html' class='ace_min-line-height-11 ace_line-height-11 ace_readonly ace_hide_line_numbers').
+    &lt;!DOCTYPE html>
+    &lt;html>
+      &lt;body>
+        &lt;script src='spl-extern/splufp-lang.js'>&lt;/script>
+        &lt;script src='main.js'>&lt;/script>
+        &lt;script>
+          __spl__main.call();
+        &lt;/script>
+      &lt;/body>
+    &lt;/html>
 
   script.
     make_editor('hello-world');
+    make_editor('hello-world-html', 'html');
   
