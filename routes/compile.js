@@ -21,8 +21,9 @@ router.post('/', function(req, res) {
     }
     else {
       var out = '/tmp/splufp-js-' + crypto.randomUUID() + '.js';
-      exec.exec(`node splufp-interpreter/bin/js/main.js splufp-interpreter/spl/* --out=${out} ${file}`, (error, stdout, stderr) => {
+      exec.exec(`node splufp-interpreter/bin/js/main.js --out=${out} ${file}`, (error, stdout, stderr) => {
         if(error) {
+          console.log(error);
           res.send('err');
         }
         else {
