@@ -17,6 +17,10 @@ ace.config.setModuleUrl(
   "ace/mode/lisp",
   "http://ajaxorg.github.io/ace-builds/src-noconflict/mode-lisp.js"
 );
+ace.config.setModuleUrl(
+  "ace/mode/html",
+  "http://ajaxorg.github.io/ace-builds/src-noconflict/mode-html.js"
+);
 
 // optional modes are javascript, haskell, lisp, and splufp
 // splufp is not implemented yet
