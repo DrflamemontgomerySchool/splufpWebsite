@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div(class='d-flex flex-row row justify-content-center')
+    div(class='d-inline-flex flex-column col fill-width-vw content-container')
+      h1(style='padding-bottom: 40px;') Frequently Asked Questions
+      ul
+        for f in faq
+          li
+            h3(class='faq-title')!= f.header
+            p(class='faq-content')!= f.body
