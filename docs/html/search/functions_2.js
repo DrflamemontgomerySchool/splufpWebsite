@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['log_0',['log',['../d9/de6/group__console.html#gae75dc98db6fd05f51601805f406b373e',1,'splufp_base']]]
+  ['elementbyid_0',['elementById',['../d2/d1d/group__js.html#ga9e0ff6fe07377a1f5e3712b0454fe6e8',1,'splufp_base']]],
+  ['eq_1',['eq',['../d0/d5d/group__bool.html#gab542fd6a42583a51516cb25dc4cf022e',1,'splufp_base']]]
 ];

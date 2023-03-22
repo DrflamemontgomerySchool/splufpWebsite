@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['neg_0',['neg',['../d3/d3b/group__arithmetic.html#gab20b7115e2a2b9ea340fd40e9a2cbb1d',1,'splufp_base']]]
+  ['ge_0',['ge',['../d0/d5d/group__bool.html#gab6563597405172e30ec070f063dd152b',1,'splufp_base']]],
+  ['geq_1',['geq',['../d0/d5d/group__bool.html#gaba3cba9e1ef5ec76a78179a686d181c3',1,'splufp_base']]]
 ];
