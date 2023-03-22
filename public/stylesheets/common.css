@@ -3,6 +3,11 @@ body, .light {
   background-color: var(--nord6);
 }
 
+.content {
+  padding-bottom: 50px;
+}
+
+
 code {
   padding: 0 .125rem;
   color: inherit;
