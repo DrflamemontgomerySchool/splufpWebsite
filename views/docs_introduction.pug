@@ -30,7 +30,7 @@ block doc_content
 
   h1 Running Hello World
 
-  p You can run the hello world program in the browser. For example, by writing the following code in #[code index.html] we can see the output when we open the console tab in the page inspector.
+  p You can run the #[strong 'Hello World'] program in the browser. For example, by writing the following code in #[code index.html] we can see the output when we open the console tab in the page inspector.
   div(id='hello-world-html' class='ace_min-line-height-11 ace_line-height-11 ace_readonly ace_hide_line_numbers').
     &lt;!DOCTYPE html>
     &lt;html>
@@ -42,6 +42,9 @@ block doc_content
         &lt;/script>
       &lt;/body>
     &lt;/html>
+  
+  iframe(src='/examples?script=hello_world.js')
+
 
   script.
     make_editor('hello-world');
