@@ -6,8 +6,10 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var docsRouter = require('./routes/docs');
+var helpRouter = require('./routes/help');
 var editorRouter = require('./routes/editor');
 var compileRouter = require('./routes/compile');
+var examplesRouter = require('./routes/examples');
 
 var bodyParser = require('body-parser');
 
@@ -26,8 +28,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/docs', docsRouter);
+app.use('/help', helpRouter);
 app.use('/editor', editorRouter);
 app.use('/compile', compileRouter);
+app.use('/examples', examplesRouter);
+
+app.get('/api', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'docs/html/index.html'));
+});
+
+app.get('/api/*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, `docs/html/${req.params["0"]}`));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
