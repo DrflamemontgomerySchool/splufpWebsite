@@ -1,0 +1,78 @@
+extends docs
+
+block title_name
+  title Loops - Splufp
+
+block doc_content
+  h1 Loops
+
+  p.
+    Splufp does not have #[strong for loops]. It only has #[strong while loops].
+    This was a design choice because #[strong for loops] are unnecessary due
+    to having the #[strong while loop]. Despite not having #[strong for loops], we can
+    iterate over Arrays with functions such as
+    #[code map],
+    #[code foldl],
+    and #[code foldr].
+
+  h1 While Loops
+
+  div(id='while-loop' class='ace_min-line-height-9 ace_line-height-9 ace_readonly ace_hide_line_numbers').
+    main {
+      set a = 0
+      while (lt a 4) {
+        a = add a 1
+      }
+
+      log a
+    }
+  iframe(src='/examples?script=while_loop.js')
+
+  h1 Iterating Over Arrays
+
+  p.
+    Splufp does not use #[strong for loops] for iterating over Arrays. We have three main functions that we can use
+    to handle Array data.
+
+  h3 Folding
+  
+  p.
+    Folding, also known as reducing, is used to combine the values of an Array. We have two different folding
+    functions. These are #[code foldl] and #[code foldr] (Fold Left and Fold Right).
+  p.
+    The difference between Fold Left and Fold Right is slight but it affects the result greatly depending on
+    the function you use.
+  
+  div(id='fold_diff' class='ace_min-line-height-6 ace_line-height-6 ace_readonly ace_hide_line_numbers').
+    foldl sub 0 [1, 2, 3]
+      (((0 - 1) - 2) - 3)
+    
+    foldr sub 0 [1, 2, 3]
+      (1 - (2 - (3 - 0)))
+  div(style='margin-top: 10px;')
+  div(id='folding' class='ace_min-line-height-7 ace_line-height-7 ace_readonly ace_hide_line_numbers').
+    main {
+      let data = [1, 2, 3]
+      log (add 'Data: ' data)
+      log (add 'Fold Left: ' (foldl sub 0 data))
+      log (add 'Fold Right: ' (foldr sub 0 data))
+    }
+  iframe(src='/examples?script=folding.js')
+  
+  h3 Map
+
+  p The #[code map] function allows us to run a command for every element in an Array.
+
+  div(id='maps' class='ace_min-line-height-4 ace_line-height-4 ace_readonly ace_hide_line_numbers').
+    main {
+      map log ['Hello World', 'World Hello']
+    }
+  iframe(src='/examples?script=map.js')
+
+  
+  script.
+    make_editor('while-loop');
+    make_editor('fold_diff');
+    make_editor('folding');
+    make_editor('maps');
+  
