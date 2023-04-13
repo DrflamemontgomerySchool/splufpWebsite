@@ -23,11 +23,19 @@ router.post('/', function(req, res) {
       var out = '/tmp/splufp-js-' + crypto.randomUUID() + '.js';
       exec.exec(`node splufp-interpreter/bin/js/main.js --out=${out} ${file}`, (error, stdout, stderr) => {
         if(error) {
-          console.log(error);
-          res.send('err');
+          var output = { "error" : stderr };
+          console.log(`I errored out: """${stderr}"""`);
+          res.send(output);
         }
         else {
-          res.sendFile(out);
+          fs.readFile(out, 'utf-8', (err, data) => {
+            if(err) {
+              res.send({ "error" : error });
+            }
+            else {
+              res.send({ "exec" : data });
+            }
+          });
         }
       });
     }
