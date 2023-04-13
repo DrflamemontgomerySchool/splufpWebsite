@@ -42,9 +42,9 @@ class __splufp__function_assignable {
   }
 }
 
-function foldr(fn, init, arr) {
+function foldl(fn, init, arr) {
   if(arr.length > 1) {
-    return foldr(fn, fn(new __splufp__function(init))(new __splufp__function(arr[0])), arr.slice(1, arr.length));
+    return foldl(fn, fn(new __splufp__function(init))(new __splufp__function(arr[0])), arr.slice(1, arr.length));
   }
   else if(arr.length > 0) {
     return fn(new __splufp__function(init))(new __splufp__function(arr[0]));
@@ -52,9 +52,9 @@ function foldr(fn, init, arr) {
   return init;
 }
 
-function foldl(fn, init, arr) {
+function foldr(fn, init, arr) {
   if(arr.length > 1) {
-    return foldl(fn, fn(new __splufp__function(arr[0]))(new __splufp__function(init)), arr.slice(1, arr.length));
+    return fn(new __splufp__function(arr[0]))(new __splufp__function(foldr(fn, init, arr.slice(1, arr.length))));
   }
   else if(arr.length > 0) {
     return fn(new __splufp__function(arr[0]))(new __splufp__function(init));
@@ -67,4 +67,9 @@ function map(fn, arr) {
     fn(new __splufp__function(arr[0]));
     map(fn, arr.slice(1, arr.length));
   }
+}
+
+function delay(ms) {
+  var now = new Date().getTime();
+  while(new Date().getTime() < now + ms){ /* Do nothing */ }
 }
