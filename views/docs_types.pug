@@ -1,0 +1,127 @@
+extends docs
+
+block title_name
+  title Types - Splufp
+
+block doc_content
+  h1 Types
+    
+  p.
+    Splufp has a variety of types that it can use. It contains most of the JavaScript types but
+    not all.
+
+  h1 Null Type
+
+  p Splufp uses #[code null] as data that is nothing.
+
+  div(id='null-desc' class='ace_min-line-height-2 ace_line-height-2 ace_readonly ace_hide_line_numbers').
+    let nothing = null
+
+  div
+    br
+
+  h1 Boolean Type
+  
+  p Booleans are a value that is #[code true] or #[code false].
+
+  div(id='bool-desc' class='ace_min-line-height-3 ace_line-height-3 ace_readonly ace_hide_line_numbers').
+    let true_value = true
+    let false_value = false
+
+  div
+    br
+
+  h1 Number Type
+
+  p Numbers can be a decimal or an integer.
+
+  div(id='num-desc' class='ace_min-line-height-9 ace_line-height-9 ace_readonly ace_hide_line_numbers').
+    let positive_integer = 12
+    let negative_integer = -12
+    
+    let positive_float = 1.1
+    let negative_float = -1.1
+
+    let preceded_float = .1
+    let following_float = 1.
+
+  div
+    br
+
+  h1 String Type
+
+  p Strings are an Array of character. Strings can be denoted by two different symbols, #[strong '] or #[strong "].
+
+  div(id='str-desc' class='ace_min-line-height-3 ace_line-height-3 ace_readonly ace_hide_line_numbers').
+    let str_apostraphe = 'This is a string!'
+    let str_quote_mark = "This is also a string!"
+
+  div
+    br
+
+  h1 Array Type
+
+  p.
+    Arrays are a list of values that can be referenced.
+    Note that Arrays in Splufp can contain different types.
+    Arrays are denoted by #[strong='['] and ended with #[strong=']'].
+    Elements in the Array are separated by #[strong ,].
+
+  div(id='arr-desc' class='ace_min-line-height-3 ace_line-height-3 ace_readonly ace_hide_line_numbers').
+    let arr = [1, 2, '3', false]
+    let arr = [1, ['inner_array']]
+
+  div
+    br
+
+  h1 Object Type
+
+  p. 
+    Objects are the equivalent of a Json object. Objects are denoted with #[strong {] and ended with #[strong }].
+    Object elements take the form #[code name : value].
+    Object elements are separated by #[strong ,].
+
+  div(id='obj-desc' class='ace_min-line-height-5 ace_line-height-5 ace_readonly ace_hide_line_numbers').
+    let obj = {
+      a : 'value',
+      b : 123
+    }
+
+  div
+    br
+
+  h1 Lambda Type
+
+  p.
+    Lambdas are inline representation of functions. They carry the same traits as functions, but they
+    differ because they can be created in other functions.
+
+  div(id='lambda-desc' class='ace_min-line-height-4 ace_line-height-4 ace_readonly ace_hide_line_numbers').
+    let lambda = \( arg1 arg2 \) {
+      add arg1 arg2
+    }
+  
+  div
+    br
+
+  h1 Function Type
+
+  p.
+    Functions are the underlying type of Splufp. Under the hood, everything is a function.
+    Functions are declared in the top level with their function name, then arguments, then body.
+    The last statement in a function is its return value.
+
+  div(id='func-desc' class='ace_min-line-height-4 ace_line-height-4 ace_readonly ace_hide_line_numbers').
+    func arg1 arg2 {
+      add arg1 arg2 // return value
+    }
+  
+  script.
+    make_editor('null-desc')
+    make_editor('bool-desc')
+    make_editor('num-desc')
+    make_editor('str-desc')
+    make_editor('arr-desc')
+    make_editor('obj-desc')
+    make_editor('lambda-desc')
+    make_editor('func-desc')
