@@ -22,8 +22,17 @@ html(style='height: 100%;')
           setTimeout(onwait, 500);
           setTimeout(onwait, 1000);
           setTimeout(onwait, 1500);
-          setTimeout(function(){text.textContent = '';}, 1900);
-
-          setTimeout(function(){__spl__main.call();}, 2000);
+          setTimeout(function(){
+            text.textContent += "\nCalling main function";
+          }, 2000);
+          setTimeout(function(){
+            text.textContent = '';
+              
+            if(typeof(__spl__main) != 'undefined') {
+              __spl__main.call();
+            } else {
+              console.log("Script not found '#[=script_src]'");
+            }
+          }, 4000);
         }
       button(onclick="run();" style="width: 90px;") Run Program

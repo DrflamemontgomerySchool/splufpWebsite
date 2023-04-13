@@ -23,7 +23,7 @@ block content-container
     - var prev_link = false
 
 
-    // Generates the sidebar dropdowns for the documentation page
+    // Generates the sidebar drop-downs for the documentation page
     if sidebar
       div(class='d-inline-flex flex-column col-sm-3 sidebar-container')
         
@@ -73,7 +73,7 @@ block content-container
                     // allow getting next link
                     - get_next_link = true
 
-                    // stops us overiding the previous link
+                    // stops us overriding the previous link
                     - have_prev_link = true
                   else
                     a(class='inactive nav-hover-hint light dropdown-item responsive' href=child.link)= child.name
