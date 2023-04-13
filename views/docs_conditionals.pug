@@ -1,0 +1,45 @@
+extends docs
+
+block title_name
+  title Conditionals - Splufp
+
+block doc_content
+  h1 Conditionals
+
+  p.
+    Splufp only has #[strong if-else statements]. This was a design choice to decrease clutter in the function.
+
+  h1 If-Else Statements
+
+  p #[strong If-else statements] have a simple syntax.
+  div(id='if-desc' class='ace_min-line-height-2 ace_line-height-2 ace_readonly ace_hide_line_numbers').
+    if condition if-body else-body
+  div(style='margin-top: 10px;')
+  div(id='if-else' class='ace_min-line-height-9 ace_line-height-9 ace_readonly ace_hide_line_numbers').
+    main {
+      if (lt 1 2) {
+        log '1 < 2'
+      } {
+        log '1 >= 2'
+      }
+      0
+    }
+  iframe(src='/examples?script=if_else.js')
+
+
+  h1 Early Returns
+  
+  p Splufp has the ability to return from a function early by using the keyword #[code ret].
+
+  div(id='ret' class='ace_min-line-height-6 ace_line-height-6 ace_readonly ace_hide_line_numbers').
+    main {
+      log 'statement is executed'
+      ret 4
+      log 'statement is not executed'
+    }
+  iframe(src='/examples?script=ret.js')
+
+  script.
+    make_editor('if-desc');
+    make_editor('if-else');
+    make_editor('ret');
