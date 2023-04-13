@@ -9,16 +9,6 @@ function create_doc(name, link) {
 }
 
 
-// list of the links and their pug_file_name
-const documentation_list = [
-  create_doc('home', 'home'),
-
-
-  create_doc('installation', 'installation'),
-  create_doc('introduction', 'introduction')
-];
-
-
 // create the different documentation sidebars
 function create_link(header, children)  {
   return { header : header, children : children };
@@ -32,7 +22,14 @@ const sidebar_links = [
   create_link('Getting Started', [
       create_doc('Installation', 'installation'),
       create_doc('Introduction', 'introduction')
-  ])
+  ]),
+
+
+  create_link('Expressions', [
+      create_doc('Types', 'types'),
+      create_doc('Conditionals', 'conditionals'),
+      create_doc('Loops', 'loops'),
+  ]),
 ];
 
 
@@ -41,8 +38,10 @@ var render_information = navbar;
 render_information.sidebar = sidebar_links;
 
 
-for(doc of documentation_list) {
-  console.log(`linking docs_${doc.name}`);
+//for(doc of documentation_list) {
+for(group of sidebar_links) {
+for(doc of group.children) {
+  console.log(`linking docs_${doc.link}`);
 
   // route the available pages
   router.get(`/${doc.link}`,
@@ -50,12 +49,13 @@ for(doc of documentation_list) {
       return function(req, res, next) {
         var ri = render_information;
         ri.active_link = doc_link;
-        res.render(`docs_${doc_name}`, ri);
+        res.render(`docs_${doc_link}`, ri);
         next();
       }
     }(doc.link, doc.name) // We need to have a helper function to make sure the variable
   );                      // values are not overwritten
 
+}
 }
 
 module.exports = router;
