@@ -14,3 +14,26 @@
 
   font-size: calc(10px + 1.5vw);
 }
+
+.content-padded {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.button-link {
+  font-size: calc(10px + 1vw);
+  border: 2px solid var(--nord0) !important;
+  min-width: 12vw;
+}
+
+.main-content {
+  margin-bottom: 30px;
+}
+
+p.main-content-text {
+  font-size: calc(12px + 0.6vw);
+}
+
+h1.main-content-text {
+  font-size: calc(16px + 1vw);
+}
