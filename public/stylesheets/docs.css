@@ -83,12 +83,6 @@ h6.responsive {
   margin-top: 30px;
 }
 
-.content-link {
-  font-size: inherit;
-
-  color: inherit;
-}
-
 .prev-link, .next-link {
   text-decoration: none;
   color: var(--nord10);
