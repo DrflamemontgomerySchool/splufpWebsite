@@ -3,6 +3,32 @@ body, .light {
   background-color: var(--nord6);
 }
 
+.content-padding {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.content-link {
+  font-size: inherit;
+
+  color: inherit;
+}
+
+.secondary-bg {
+  padding: 30px;
+  background-color: var(--nord2);
+  color: var(--nord6);
+  margin-right: 0px;
+  width: 102vw !important; /* to fill the width it is 102vw for some weird reason */
+}
+
+.primary-bg {
+  padding: 30px;
+  margin-right: 0px;
+  width: 102vw !important; /* to fill the width it is 102vw for some weird reason */
+}
+
 .content {
   padding-bottom: 50px;
 }
