@@ -44,7 +44,7 @@ function on_compiled() {
   setTimeout(onwait, 1500);
 
   setTimeout(function() {
-      text.textContent += '\nCode Compiled';
+      text.textContent += '\nCode Compiled\nClick \'Run\'';
   }, 2000);
 }
 
