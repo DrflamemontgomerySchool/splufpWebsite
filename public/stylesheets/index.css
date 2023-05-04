@@ -20,6 +20,10 @@
   padding-right: 30px;
 }
 
+.content-centered {
+  max-width: 80vw;
+}
+
 .button-link {
   font-size: calc(10px + 1vw);
   border: 2px solid var(--nord0) !important;
@@ -32,6 +36,8 @@
 
 p.main-content-text {
   font-size: calc(12px + 0.6vw);
+  max-width: 60vw;
+  text-align: center;
 }
 
 h1.main-content-text {
