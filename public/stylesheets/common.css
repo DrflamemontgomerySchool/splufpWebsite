@@ -1,146 +1,6 @@
-body, .light {
-  color: var(--nord0);
-  background-color: var(--nord6);
-}
-
-.content-padding {
-  width: 100%;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.content-link {
-  font-size: inherit;
-
-  color: inherit;
-}
-
-.secondary-bg {
-  padding: 30px;
-  background-color: var(--nord2);
-  color: var(--nord6);
-  margin-right: 0px;
-  width: 102vw !important; /* to fill the width it is 102vw for some weird reason */
-}
-
-.primary-bg {
-  padding: 30px;
-  margin-right: 0px;
-  width: 102vw !important; /* to fill the width it is 102vw for some weird reason */
-}
-
-.content {
-  padding-bottom: 50px;
-}
-
-
-code {
-  padding: 0 .125rem;
-  color: inherit;
-  background: #b8bec9;
-  border-radius: .125rem;
-  font-size: .875rem;
-}
-
-.no-overflow-x {
-  overflow-x: hidden;
-}
-
-.no-overflow-y {
-  overflow-y: hidden;
-}
-
-.fill-width-vw {
- width: 100vw;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.full-height {
-  height: 100%;
-}
-
-.full-vh {
-  min-height: 100vh;
-}
-
-.clearfix {
-  overflow: auto;
-}
-
-#splufp-brand {
-  padding-left: 10px;
-}
-
-#navbarSupportedContent {
-  margin-bottom: -5px;
-}
-
-#navbar-toggler {
-  margin-right: 10px;
-}
-
-#navbar-links {
-  margin-bottom: -10px;
-  gap: 10px;
-}
-
-.nav-dropdown-item {
-  margin-top: .2rem;
-}
-
-.dropdown-divider.dark {
-  border-top: 1px solid var(--nord1);
-}
-
-.nav-shadow.dark {
-  transition: box-shadow 0.1s;
-  color: var(--nord6) !important;
-}
-
-.nav-shadow.dark:hover {
-  box-shadow: 0px 0px 3px 12px #272e36 !important;
-  background-color: #272e36 !important;
-}
-
-.dropdown-divider.light {
-  border-top: 1px solid var(--nord0);
-}
-
-.nav-hover-hint {
-  transition: color 0.3s;
-  transition: background-color 0.3s;
-}
-
-.nav-hover-hint:hover {
-  color: var(--nord10);
-}
-
-.nav-hover-hint.light:hover {
-  background-color: var(--nord4);
-}
-
-.nav-hover-hint.dark:hover {
-  background-color: var(--nord3);
-}
-
-.nav-shadow.light {
-  transition: box-shadow 0.1s;
-  color: var(--nord0) !important;
-}
-
-.nav-shadow.light:hover {
-  box-shadow: 0px 0px 3px 12px #272e36 !important;
-  background-color: #272e36 !important;
-}
-
-
-.nav-link {
-  padding-left: 40px;
-  font-size: 20px;
-}
+/***************************************************
+ *  COLOR SCHEMES
+ ***************************************************/
 
 .dark {
   color: var(--nord6);
@@ -157,52 +17,231 @@ code {
   background-color: var(--nord0);
 }
 
-#navbar-toggler.dark {
-  border: 1px solid var(--nord6);
+body, .light {
+  color: var(--nord0);
+  background-color: var(--nord6);
 }
+
+/***************************************************
+ *  COLORED BLOCKS
+ ***************************************************/
+
+.secondary-bg {
+  padding: 30px;
+  background-color: var(--nord2);
+  color: var(--nord6);
+  margin-right: 0px;
+  width: 102vw !important; /* to fill the width it is 102vw for some weird reason */
+}
+
+.primary-bg {
+  padding: 30px;
+  margin-right: 0px;
+  width: 102vw !important; /* to fill the width it is 102vw for some weird reason */
+}
+
+/***************************************************
+ *  MENU COLORS
+ ***************************************************/
+
+/***
+ * DROPDOWN BORDER DIVIDER COLORS
+ ***/
+.dropdown-divider.dark {
+  border-top: 1px solid var(--nord1); /* dark theme divider */
+}
+.dropdown-divider.light {
+  border-top: 1px solid var(--nord0); /* light theme divider */
+}
+
+
+
+.nav-hover-hint {
+  /* Fade on color changes */
+  transition: color 0.3s; 
+  transition: background-color 0.3s;
+}
+
+.nav-hover-hint:hover {
+  color: var(--nord10); /* default hover color */
+}
+
+.nav-hover-hint.light:hover {
+  background-color: var(--nord4); /* light hover color */
+}
+
+.nav-hover-hint.dark:hover {
+  background-color: var(--nord3); /* dark hover color */
+}
+
+/*
+ * NAVBAR DROPDOWN
+ */
+#navbar-toggler.dark {
+  border: 1px solid var(--nord6); /* Add a border for the navbar dropdown button */
+}
+
+
+/*
+ * NAVBAR SHADOW SETTINGS
+ */
+.nav-shadow.dark {
+  transition: box-shadow 0.1s; /* Add fade-in for the shadow */
+  color: var(--nord6) !important; /* Set the text color */
+}
+
+.nav-shadow.dark:hover {
+  /* Add a shadow on hover */
+  box-shadow: 0px 0px 3px 12px #272e36 !important; /* Set the shadow color and size */
+  background-color: #272e36 !important; /* Set the hover background color */
+}
+
+.nav-shadow.light {
+  transition: box-shadow 0.1s; /* Add fade-in for the shadow */
+  color: var(--nord0) !important; /* Set the text color */
+}
+
+.nav-shadow.light:hover {
+  /* Add a shadow on hover */
+  box-shadow: 0px 0px 3px 12px #272e36 !important; /* Set the shadow color and size */
+  background-color: #272e36 !important; /* Set the hover background color */
+}
+
+
+/***************************************************
+ *  ELEMENT SIZING
+ ***************************************************/
+
+.no-overflow-x {
+  overflow-x: hidden; /* Prevent child rendering past the parent width */
+}
+
+.no-overflow-y {
+  overflow-y: hidden; /* Prevent child rendering past the parent width */
+}
+
+.fill-width-vw {
+ width: 100vw; /* Use the width of the viewport */
+}
+
+.full-vh {
+  min-height: 100vh; /* Have at least the height of the viewport */
+}
+
+.full-width {
+  width: 100%; /* Use the width of the parent */
+}
+
+.full-height {
+  height: 100%; /* Use the height of the parent */
+}
+
+
+
+/*****************************************
+ * NAVIGATION BAR STYLING 
+ *****************************************/
+
+#navbarSupportedContent {
+  margin-bottom: -5px; /* Remove some space of the dropdown menu to make it look uniform */
+}
+
+#navbar-toggler {
+  margin-right: 10px; /* Stops the navbar dropdown button from hugging the right side of the screen */
+}
+
+#navbar-links {
+  /* Gives the Dropdown Navbar some space between links */
+  gap: 10px;
+}
+
+.nav-link {
+  /* Make the navigation link have some extra width and a big font that is easy to read */
+  padding-left: 40px;
+  font-size: 20px;
+}
+
+.nav-dropdown-item {
+  /* Make the Dropdown Navbar elements have some extra height which looks better */
+  margin-top: .2rem;
+}
+
 
 #navbar-icon.dark {
   /*
    * Uses the w3schools image for expanding the navigation bar but
    * changes the colors of the image
+   *
+   * https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_navbar_collapse
    */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28236, 239, 244, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/*#footer {
-  position: absolute;
-  bottom: 0;
-  min-height: 100px;
+
+/* Stop the navbar splufp icon from hugging the left of the screen */
+#splufp-brand {
+  padding-left: 10px;
 }
 
-#page-footer {
-  width: 100%;
-  height: 100%;
-}*/
-
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-
-.container-wrap {
-  padding-bottom: 4rem;
-}
-
-.footer-element {
-  margin-left: 70px;
-  min-width: 120px;
-  height: 100%;
-}
+/*****************************************
+ *  FOOTER STYLING
+ *****************************************/
 
 .footer-link {
+  /* Remove underline and use the current colorscheme */
   text-decoration: none;
   color: inherit;
 }
 
 .footer-header {
+  /* Make the text bigger than the links and have more space between it and the links */
   font-size: 20px;
   margin-bottom: 10px;
+
+  /* have an underline and use the current colorscheme */
   text-decoration: underline;
   color: inherit;
+}
+
+
+/*****************************************
+ * USEFUL CLASSES AND STYLES
+ *****************************************/
+
+/*
+ * Insure max width is used
+ * Add space between content which makes it easier to read and feel less cramped
+ */
+.content-padding {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/*
+ * A class for styling links inside text blocks
+ */
+.content-link {
+  /* Keeps the font-size and color so that it is distinguishable by its underline only */
+  font-size: inherit;
+  color: inherit;
+}
+
+/*
+ * Add some space between content to make it look better on smaller devices
+ */
+.content {
+  padding-bottom: 50px;
+}
+
+
+/*
+ * Style code blocks to have more space which makes it easier to read
+ */
+code {
+  padding: 0 .125rem; /* add some padding to make it easier to read */
+  color: inherit;
+  background: #b8bec9; /* The background makes it easy to distinguish*/
+  border-radius: .125rem;
+  font-size: .875rem;
 }

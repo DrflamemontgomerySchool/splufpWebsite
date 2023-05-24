@@ -1,7 +1,149 @@
+/*****************************************
+ * DROPDOWN MENUS
+ *****************************************/
+
+/*
+ * Prevents background extending past the rounded corners
+ */
+.dropdown-menu {
+  overflow: hidden;
+}
+
+/*
+ * Add space between the header and the child elements
+ */
+.dropdown-header-list {
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+/*
+ * Keep the transition smooth when collapsing
+ */
+.dropdown_after_header.collapsing {
+  margin-top: 8px;
+}
+
+/*
+ * Keep the shape uniform when collapsed
+ */
+.dropdown_after_header.collapse {
+  margin-top: 8px;
+}
+
+
+/*
+ * Make the first list element appear slightly higher for a better style
+ */
+.dropdown-list-elem:first-child {
+  margin-top: -8px;
+}
+
+/*
+ * Remove some space for the last list element for a better style
+ */
+.dropdown-list-elem:last-child {
+  margin-bottom: -8px; 
+}
+
+/*
+ * Change the background for user feedback when clicked
+ */
+.dropdown-item:focus {
+  background-color: var(--nord6);
+}
+
+/*
+ * Change the background for user feedback for current page
+ */
+.dropdown-item.active {
+  background-color: var(--nord9);
+}
+
+/*
+ * Stop the color change on hovering the active page link
+ */
+.nav-hover-hint.active.light:hover {
+  color: var(--nord6);
+}
+
+/*
+ * Stop the color change on hovering the active page link
+ */
+.nav-hover-hint.active.dark:hover {
+  color: var(--nord0);
+}
+
+/*
+ * Stop the color change on hovering the active page link
+ */
+.nav-hover-hint.active:hover {
+  background-color: var(--nord9) !important; 
+}
+
+
+/*****************************************
+ * RESPONSIVE TEXT
+ *****************************************/
+
+/*
+ * Make links change size
+ */
+a.responsive {
+  font-size: calc(8pt + 0.6vw);
+}
+
+/*
+ * Make headers change size
+ */
+h6.responsive {
+  font-size: calc(6pt + 0.6vw);
+}
+
+
+/*****************************************
+ * NEXT AND PREV LINKS
+ *****************************************/
+
+/*
+ * Remove underlines and have a constant color that is diffent from standard colors
+ */
+.prev-link, .next-link {
+  text-decoration: none;
+  color: var(--nord10);
+}
+
+.next-link::after {
+  content: "\00bb"; /* add the » symbol after the link name */
+  padding-left: 4px; /* add some padding for good responsive page design */
+}
+
+.prev-link::before {
+  content: "\00ab"; /* add the « symbol before the link name */
+  padding-right: 4px; /* add some padding for good responsive page design */
+}
+
+/*****************************************
+ * USEFUL CLASSES
+ *****************************************/
+
+/*
+ * Add some space above headings for better separation
+ */
+.doc-content-header {
+  margin-top: 30px;
+}
+
+/*
+ * Set the base sidebar width
+ */
 .sidebar-container {
   width: calc(150px + 2vw);
 }
 
+/*
+ * Change the sidebars size when the screen is too small
+ */
 @media only screen and (max-width: 652px) {
   .sidebar-container {
     margin-left: 30px;
@@ -9,91 +151,9 @@
   }
 }
 
+/*
+ * Make the sidebar content have a minimum width
+ */
 .sidebar {
   min-width: calc(30px + 10vw);
-}
-
-.nav-divider {
-  margin: 0px 0px;
-  color: var(--nord7);
-}
-
-.dropdown-menu {
-  overflow: hidden;
-}
-
-.dropdown-header-list {
-  margin-top: -8px;
-  margin-bottom: -8px;
-}
-
-.dropdown_after_header.collapsing {
-  margin-top: 8px;
-}
-.dropdown_after_header.collapse {
-  margin-top: 8px;
-}
-
-.dropdown-list-elem:first-child {
-  margin-top: -8px;
-}
-
-.dropdown-list-elem:last-child {
-  margin-bottom: -8px; 
-}
-
-.dropdown-item:focus {
-  background-color: var(--nord6);
-}
-
-.dropdown-item.active {
-  background-color: var(--nord9);
-}
-
-.nav-hover-hint.active.light:hover {
-  color: var(--nord6);
-}
-
-.nav-hover-hint.active.dark:hover {
-  color: var(--nord0);
-}
-.nav-hover-hint.active:hover {
-  background-color: var(--nord9) !important; 
-}
-
-.fill-list {
-  flex: 0 0 100%;
-}
-
-a.responsive {
-  /*font-size: calc(8px + 1.5vw);*/
-  font-size: calc(8pt + 0.6vw);
-}
-
-h6.responsive {
-  font-size: calc(6pt + 0.6vw);
-  /*font-size: calc(4px + 1.3vw);*/
-}
-
-.fill-page {
-  height: 100%;
-}
-
-.doc-content-header {
-  margin-top: 30px;
-}
-
-.prev-link, .next-link {
-  text-decoration: none;
-  color: var(--nord10);
-}
-
-.next-link::after {
-  content: "\00bb";
-  padding-left: 4px;
-}
-
-.prev-link::before {
-  content: "\00ab";
-  padding-right: 4px;
 }

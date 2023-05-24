@@ -1,31 +1,58 @@
-.editor-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-right: 10px;
-  margin-left: 10px;
+/*****************************************
+ * CODE OUTPUT
+ *****************************************/
+
+/*
+ * Make the output have a thick border to signify it as a key element
+ */
+#editor-output {
+  min-height: 80vh;
+  border-radius: 4px;
+  border-style: solid;
 }
 
-.compile-button {
-  min-width: 100px;
-  width: 30%;
+/*
+ * Change the border color to fit the theme
+ */
+#editor-output.light {
+  border-color: var(--nord0); 
 }
 
-#compile-data {
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-
-  gap: 30px;
+/*
+ * Change the border color to fit the theme
+ */
+#editor-output.dark {
+  border-color: var(--nord6); 
 }
+
+#text-output {
+  resize: none; /* Remove the text resizing handle */
+  /*
+   * Make the text output use all available space
+   */
+  width: 100%; 
+  height: 100%;
+}
+
 
 #graphics-output {
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Add some space below so that it doesn't clip into the divider line */
+
+  /*
+   * Make the graphics use all available space
+   */
   width: 100%;
   height: 100%;
 
+  /*
+   * Stop graphics from being rendered outside the box
+   */
   overflow: hidden;
 }
 
+/*
+ * Position the graphics correctly and add some padding to prevent clipping
+ */
 #graphics-canvas {
   position: relative;
   top: 0;
@@ -34,37 +61,54 @@
 
   margin-top: 10px;
   margin-bottom: 10px;
-
-  /*border-style: solid;
-  border-radius: 2px;
-  border-color: var(--nord3);
-  border-width: 1px;*/
 }
 
+
+
+/*****************************************
+ * PAGE OBJECTS
+ *****************************************/
+
+/*
+ * Set the size for the container of the compile & run buttons
+ */
+#compile-data {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  gap: 30px;
+}
+
+/*
+ * Add some space between the editor and the output
+ */
 #editor-content {
   gap: 20px;
 }
 
+/*
+ * Make the editor the same height as the output
+ */
 #splufp-editor {
   min-height: 80vh;
 }
 
-#editor-output {
-  min-height: 80vh;
-  border-radius: 4px;
-  border-style: solid;
+
+/*
+ * Add space around the editor content
+ */
+.editor-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
-#editor-output.light {
-  border-color: var(--nord0); 
-}
-
-#editor-output.dark {
-  border-color: var(--nord6); 
-}
-
-#text-output {
-  resize: none;
-  width: 100%;
-  height: 100%;
+/*
+ * Set a base size for buttons
+ */
+.compile-button {
+  min-width: 100px;
+  width: 30%;
 }

@@ -1,13 +1,16 @@
+/*****************************************
+ * MAIN PAGE CONTENT
+ *****************************************/
 
 /* Make the logo resize */
 .splufp-lang-logo {
   min-width: 40vw;
 }
 
-/*****
+/*
  * Add some padding so it looks nice when it fills underneath the logo
  * Make the font responsive  
- *****/
+ */
 .splufp-lang-description {
   padding-left: 30px;
   padding-right: 30px;
@@ -15,31 +18,48 @@
   font-size: calc(10px + 1.5vw);
 }
 
+/*
+ * Add space for page content so that it doesn't touch the sides
+ */
 .content-padded {
   padding-left: 30px;
   padding-right: 30px;
 }
 
+/*
+ * Set a max width for the page content so that it looks nice on the page
+ * If it is too big it would look sparse and unusual
+ * This keeps it from looking too slim
+ */
 .content-centered {
   max-width: 80vw;
 }
 
+/*
+ * Styling for a button that fades its background but keeps its border
+ */
 .button-link {
   font-size: calc(10px + 1vw);
   border: 2px solid var(--nord0) !important;
   min-width: 12vw;
 }
 
+/*
+ * Add spacing below content so that content doesn't mix
+ */
 .main-content {
   margin-bottom: 30px;
 }
 
+
+/*
+ * Make the main text big
+ */
 p.main-content-text {
   font-size: calc(12px + 0.6vw);
   max-width: 60vw;
   text-align: center;
 }
-
 h1.main-content-text {
   font-size: calc(16px + 1vw);
 }

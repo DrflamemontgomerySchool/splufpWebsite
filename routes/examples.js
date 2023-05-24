@@ -7,6 +7,7 @@ var navbar = require('./navbar');
 var render_information = navbar;
 
 router.get('/', function(req, res, next) {
+  // add the link to the example script
   res.render('examples', {script_src : `example/${req.query.script}`});
   next()
 });

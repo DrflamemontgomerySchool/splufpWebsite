@@ -1,12 +1,26 @@
+/*****************************************
+ * ACE EDITOR STYLING
+ *****************************************/
+
+/*
+ * Make the editor rounded which looks better
+ * add some padding which adds more space
+ */
 .ace_readonly, .ace_edit {
   padding-bottom: 5px;
   border-radius: 4px;
 }
 
+/*
+ * Add some space above the code content 
+ */
 .ace_gutter, .ace_scroller {
   top: 5px;
 }
 
+/*
+ * Add some space at the bottom to make it neat
+ */
 .ace_editor {
   padding-bottom: 25px;
 }

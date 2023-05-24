@@ -1,3 +1,4 @@
+// import the modules
 var express = require('express');
 var router = express.Router();
 var navbar = require('./navbar');
@@ -14,6 +15,7 @@ function create_link(header, children)  {
   return { header : header, children : children };
 }
 
+// create the links
 const sidebar_links = [
   create_link(undefined, [
       create_doc('Home', 'home')
@@ -38,15 +40,17 @@ var render_information = navbar;
 render_information.sidebar = sidebar_links;
 
 
-//for(doc of documentation_list) {
+// create a router for every page with the correct links with correct styling
 for(group of sidebar_links) {
 for(doc of group.children) {
+  // debug statement for testing
   console.log(`linking docs_${doc.link}`);
 
   // route the available pages
   router.get(`/${doc.link}`,
     function(doc_link, doc_name) {
       return function(req, res, next) {
+        //set the render information for the page
         var ri = render_information;
         ri.active_link = doc_link;
         res.render(`docs_${doc_link}`, ri);
